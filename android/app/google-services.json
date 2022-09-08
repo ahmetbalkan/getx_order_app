@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236100935413",
+    "project_id": "order-app-5044c",
+    "storage_bucket": "order-app-5044c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236100935413:android:5504684783ccb12c5d2fbc",
+        "android_client_info": {
+          "package_name": "com.codeline.firebase_getx_order_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236100935413-3k42s53nmhpob9431dfvthtbh52otbhh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVibsQ9raZh_VdjNaKfLDUlecWokH__oA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236100935413-3k42s53nmhpob9431dfvthtbh52otbhh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
