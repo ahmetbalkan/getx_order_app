@@ -1,5 +1,5 @@
 import 'package:firebase_getx_order_app/constants/constant.dart';
-import 'package:firebase_getx_order_app/view/loginpage/login_page.dart';
+import 'package:firebase_getx_order_app/view/loginpage/phone_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,7 +59,7 @@ class EnterPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: InkWell(
-                        onTap: () => Get.to(LoginPage()),
+                        onTap: () => Get.to(PhonePage()),
                         child: Container(
                           width: double.infinity,
                           height: 50,
