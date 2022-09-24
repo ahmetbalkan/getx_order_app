@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_getx_order_app/view/mainpage/main_page.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-import '../view/loginpage/pin_page.dart';
+import 'pin_page.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
@@ -10,8 +11,9 @@ class LoginController extends GetxController {
   var isCodeSend = false.obs;
   var isLoginComplete = false.obs;
 
-  FirebaseAuth auth = FirebaseAuth.instance;
+  GetStorage box = GetStorage();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
   void sendCode(phone) async {
     try {
       await FirebaseAuth.instance.verifyPhoneNumber(
@@ -33,12 +35,7 @@ class LoginController extends GetxController {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verId.value, smsCode: pin);
-
       await auth.signInWithCredential(credential);
-
-      final user = await auth.currentUser;
-      final idToken = await user!.getIdToken();
-      final token = idToken;
       Get.offAll(MainPage());
     } catch (e) {
       Get.snackbar("Kodunuz Hatalı", "Lütfen doğru kodu giriniz.");

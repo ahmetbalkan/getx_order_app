@@ -12,6 +12,14 @@ class Constants {
     );
   }
 
+  TextStyle quicksantBlackColor(double size) {
+    return TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: size,
+      color: ct.mainColor,
+    );
+  }
+
   TextStyle quicksantMainColorBold(double size) {
     return TextStyle(
       fontWeight: FontWeight.bold,

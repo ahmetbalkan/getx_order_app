@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_getx_order_app/controller/login_controller.dart';
+import 'package:firebase_getx_order_app/view/loginpage/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -139,6 +139,7 @@ class _PinPageState extends State<PinPage> {
                                 onCompleted: (pin) {
                                   pincode = pin;
                                 },
+                                autofocus: true,
                                 focusedPinTheme: defaultPinTheme.copyWith(
                                   height: 68,
                                   width: 64,

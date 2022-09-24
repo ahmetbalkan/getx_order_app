@@ -7,7 +7,8 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
-import '../../controller/login_controller.dart';
+import '../../locator.dart';
+import 'login_controller.dart';
 import 'pin_page.dart';
 
 class PhonePage extends StatefulWidget {
@@ -20,9 +21,9 @@ class PhonePage extends StatefulWidget {
 LoginController _controller = Get.put(LoginController());
 
 class _PhonePageState extends State<PhonePage> {
-  ColorsTheme ct = ColorsTheme();
+  var constants = locator.get<Constants>();
+  var ct = locator.get<ColorsTheme>();
 
-  Constants constants = Constants();
   GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
