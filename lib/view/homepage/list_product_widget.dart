@@ -45,7 +45,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                       subtitle: Text(
                         textAlign: TextAlign.center,
                         "40.50 TL",
-                        style: constants.quicksantMainColor(18),
+                        style: constants.quicksantMainColor(21),
                       ),
                     ),
                     Container(
@@ -83,36 +83,52 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 physics: ClampingScrollPhysics(),
-                itemCount: 10,
+                itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(
-                          "Damacana Su",
-                          style: constants.quicksantMainColorBold(16),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Damacana Su",
+                              style: constants.quicksantMainColorBold(18),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: Text(
+                                "Tüm Ürünler >",
+                                style: constants.quicksantMainColor(12),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Divider(),
                       ),
-                      Container(
-                        height: 270,
-                        child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: boxes.length,
-                          itemBuilder: (context, int index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 6.0),
-                              child: boxes[index],
-                            );
-                          },
-                        ),
+                      Column(
+                        children: [
+                          Container(
+                            height: 270,
+                            child: ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: boxes.length,
+                              itemBuilder: (context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 1, top: 8, bottom: 8),
+                                  child: boxes[index],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   );

@@ -6,43 +6,47 @@ import 'colors.dart';
 class Constants {
   ColorsTheme ct = ColorsTheme();
   TextStyle quicksantMainColor(double size) {
-    return GoogleFonts.oswald(
+    return GoogleFonts.kanit(
         textStyle: TextStyle(
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w400,
       fontSize: size,
       color: ct.mainColor,
     ));
   }
 
   TextStyle quicksantBlackColor(double size) {
-    return TextStyle(
-      fontWeight: FontWeight.w500,
+    return GoogleFonts.kanit(
+        textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
       fontSize: size,
       color: ct.mainColor,
-    );
+    ));
   }
 
   TextStyle quicksantMainColorBold(double size) {
-    return TextStyle(
-      fontWeight: FontWeight.bold,
+    return GoogleFonts.kanit(
+        textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
       fontSize: size,
       color: ct.mainColor,
-    );
+    ));
   }
 
   TextStyle quicksantwhite(double size) {
-    return TextStyle(
-      fontWeight: FontWeight.bold,
+    return GoogleFonts.kanit(
+        textStyle: TextStyle(
+      fontWeight: FontWeight.w400,
       fontSize: size,
       color: Colors.white,
-    );
+    ));
   }
 
   TextStyle quicksantGrey(double size) {
-    return TextStyle(
+    return GoogleFonts.kanit(
+        textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: size,
-      color: Colors.black87,
-    );
+      color: ct.mainColor,
+    ));
   }
 }
