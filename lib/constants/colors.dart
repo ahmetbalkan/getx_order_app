@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ColorsTheme {
   Color mainColor = const Color(0xFF31B0FF);
   Color mainColor2 = const Color(0xFF00F1F5);
+  Color backgroundColor = const Color(0xFFd4efff);
+
   MaterialColor materialColorMain = const MaterialColor(
     0xFF31B0FF,
     <int, Color>{

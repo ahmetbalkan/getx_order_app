@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_getx_order_app/view/mainpage/main_page.dart';
+import 'package:firebase_getx_order_app/view/main_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../locator.dart';
 import 'pin_page.dart';
 
 class LoginController extends GetxController {
@@ -11,7 +12,7 @@ class LoginController extends GetxController {
   var isCodeSend = false.obs;
   var isLoginComplete = false.obs;
 
-  GetStorage box = GetStorage();
+  var box = locator.get<GetStorage>();
 
   FirebaseAuth auth = FirebaseAuth.instance;
   void sendCode(phone) async {
