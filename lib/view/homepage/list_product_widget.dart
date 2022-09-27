@@ -118,7 +118,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                             child: ListView.builder(
                               physics: BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
-                              itemCount: boxes.length,
+                              itemCount: 5,
                               itemBuilder: (context, int index) {
                                 return Padding(
                                   padding: const EdgeInsets.only(

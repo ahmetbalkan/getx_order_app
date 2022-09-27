@@ -22,6 +22,7 @@ class _PinPageState extends State<PinPage> {
   ColorsTheme ct = ColorsTheme();
 
   LoginController _controller = Get.put(LoginController());
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -161,7 +162,7 @@ class _PinPageState extends State<PinPage> {
                             ),
                             Center(
                               child: Countdown(
-                                seconds: 120,
+                                seconds: 180,
                                 build: (BuildContext context, double time) =>
                                     Text(
                                   time.toInt().toString() +
@@ -181,11 +182,9 @@ class _PinPageState extends State<PinPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 TextButton.icon(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.repeat),
-                                    label: Text("Tekrar Gönder.")),
-                                TextButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.back();
+                                    },
                                     icon: Icon(Icons.app_registration),
                                     label: Text("Numarayı değiştir.")),
                               ],

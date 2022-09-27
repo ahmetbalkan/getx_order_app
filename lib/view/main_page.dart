@@ -28,121 +28,144 @@ final screen = [
 
 int currentindex = 0;
 
+late PageController _pageController;
+
 class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
+  var constants = locator.get<Constants>();
+  var ct = locator.get<ColorsTheme>();
 
   @override
   Widget build(BuildContext context) {
-    var constants = locator.get<Constants>();
-    var ct = locator.get<ColorsTheme>();
-
     return Container(
         decoration: const BoxDecoration(color: Colors.white),
         child: SafeArea(
           child: Scaffold(
-              bottomNavigationBar: BottomBarWithSheet(
-                controller: _bottomBarController,
-                autoClose: true,
-                mainActionButtonBuilder: (context) {
-                  return Image.asset(
-                    "assets/button.png",
-                    width: 60,
-                  );
-                },
-                mainActionButtonTheme: MainActionButtonTheme(
-                  color: ct.mainColor,
-                  size: 22,
-                  icon: const FaIcon(
-                    FontAwesomeIcons.retweet,
-                    color: Colors.white,
-                  ),
+            bottomNavigationBar: BottomBarWithSheet(
+              controller: _bottomBarController,
+              autoClose: true,
+              mainActionButtonBuilder: (context) {
+                return Image.asset(
+                  "assets/button.png",
+                  width: 60,
+                );
+              },
+              mainActionButtonTheme: MainActionButtonTheme(
+                color: ct.mainColor,
+                size: 22,
+                icon: const FaIcon(
+                  FontAwesomeIcons.retweet,
+                  color: Colors.white,
                 ),
-                bottomBarTheme: const BottomBarTheme(
-                  selectedItemIconSize: 35,
-                  mainButtonPosition: MainButtonPosition.middle,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(25)),
-                  ),
-                  itemIconColor: Colors.grey,
-                  itemTextStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                  ),
-                  selectedItemIconColor: Colors.blue,
-                  selectedItemTextStyle: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 10.0,
-                  ),
+              ),
+              bottomBarTheme: const BottomBarTheme(
+                selectedItemIconSize: 35,
+                mainButtonPosition: MainButtonPosition.middle,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                 ),
-                onSelectItem: (index) {
-                  setState(() {
-                    if (index == 2) {
-                      _bottomBarController.openSheet();
-                    } else {
-                      currentindex = index;
-                      _bottomBarController.closeSheet();
-                    }
-                  });
-                },
-                sheetChild: Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        "Another content",
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                        ),
+                itemIconColor: Colors.grey,
+                itemTextStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                selectedItemIconColor: Colors.blue,
+                selectedItemTextStyle: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 10.0,
+                ),
+              ),
+              onSelectItem: (index) {
+                setState(() {
+                  _onItemTapped(index);
+                });
+              },
+              sheetChild: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Another content",
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            _bottomBarController.closeSheet();
-                          },
-                          child: const Text("Kapat"))
-                    ],
-                  ),
-                ),
-                items: const [
-                  BottomBarWithSheetItem(
-                      icon: Icons.people, label: "Ana Sayfa"),
-                  BottomBarWithSheetItem(icon: Icons.settings, label: "Fırsat"),
-                  BottomBarWithSheetItem(
-                      icon: Icons.shopping_cart, label: "Sepet"),
-                  BottomBarWithSheetItem(icon: Icons.favorite, label: "Profil"),
-                ],
-              ),
-              backgroundColor: ct.backgroundColor,
-              appBar: AppBar(
-                title: Image.asset(
-                  alignment: Alignment.center,
-                  "assets/logo-white.png",
-                  width: 75,
-                ),
-                centerTitle: true,
-                actions: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: const VerticalDivider(
-                      width: 2,
-                      color: Colors.white,
                     ),
-                  ),
-                  const SizedBox(width: 15),
-                  const Center(
-                      child: const FaIcon(
-                    FontAwesomeIcons.headset,
-                    size: 25,
-                    color: Colors.white,
-                  )),
-                  const SizedBox(
-                    width: 20,
-                  )
-                ],
+                    ElevatedButton(
+                        onPressed: () {
+                          _bottomBarController.closeSheet();
+                        },
+                        child: const Text("Kapat"))
+                  ],
+                ),
               ),
-              body: screen[currentindex]),
+              items: const [
+                BottomBarWithSheetItem(icon: Icons.people, label: "Ana Sayfa"),
+                BottomBarWithSheetItem(icon: Icons.settings, label: "Fırsat"),
+                BottomBarWithSheetItem(
+                    icon: Icons.shopping_cart, label: "Sepet"),
+                BottomBarWithSheetItem(icon: Icons.favorite, label: "Profil"),
+              ],
+            ),
+            backgroundColor: ct.backgroundColor,
+            appBar: AppBar(
+              title: Image.asset(
+                alignment: Alignment.center,
+                "assets/logo-white.png",
+                width: 75,
+              ),
+              centerTitle: true,
+              actions: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: const VerticalDivider(
+                    width: 2,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(width: 15),
+                const Center(
+                    child: const FaIcon(
+                  FontAwesomeIcons.headset,
+                  size: 25,
+                  color: Colors.white,
+                )),
+                const SizedBox(
+                  width: 20,
+                )
+              ],
+            ),
+            body: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() => currentindex = index);
+                },
+                children: screen),
+          ),
         ));
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      currentindex = index;
+      //
+      //
+      //using this page controller you can make beautiful animation effects
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+    });
   }
 }

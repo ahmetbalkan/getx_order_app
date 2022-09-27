@@ -35,12 +35,13 @@ class MyApp extends StatelessWidget {
     var user = auth.currentUser;
 
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sual',
-      theme: ThemeData(
-        primarySwatch: ct.materialColorMain,
-      ),
-      home: user != null ? MainPage() : EnterPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Sual',
+        theme: ThemeData(
+          primarySwatch: ct.materialColorMain,
+        ),
+        home: MainPage()
+        //user != null ? MainPage() : EnterPage(),
+        );
   }
 }

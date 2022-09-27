@@ -43,7 +43,7 @@ class AdressWidget extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 15, right: 15, top: 15, bottom: 15),
+                        left: 15, right: 10, top: 10, bottom: 10),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -51,7 +51,7 @@ class AdressWidget extends StatelessWidget {
                               color: ct.mainColor, size: 25),
                           Text(
                             " Ev, Halkalı Merkez ",
-                            style: constants.quicksantMainColor(16),
+                            style: constants.quicksantMainColor(12),
                           ),
                           FaIcon(FontAwesomeIcons.angleDown,
                               color: ct.mainColor),
@@ -77,8 +77,8 @@ class AdressWidget extends StatelessWidget {
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 11),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
                   child: Center(
                     child: Column(
                       children: [

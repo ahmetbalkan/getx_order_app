@@ -25,7 +25,7 @@ class LoginController extends GetxController {
           verId.value = verificationId;
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
-        timeout: const Duration(seconds: 120),
+        timeout: const Duration(seconds: 180),
       );
     } catch (e) {
       print(e);
