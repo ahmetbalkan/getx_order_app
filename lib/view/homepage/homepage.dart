@@ -1,4 +1,3 @@
-import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
 import 'package:firebase_getx_order_app/view/homepage/slide_mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,8 +16,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
-
   @override
   Widget build(BuildContext context) {
     var constants = locator.get<Constants>();

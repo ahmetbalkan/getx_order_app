@@ -36,6 +36,7 @@ class _OppurtunityPageState extends State<OppurtunityPage> {
                   children: [
                     Image.asset(
                       'assets/damacana.png',
+                      fit: BoxFit.fill,
                       width: double.infinity,
                       height: 150,
                     ),
@@ -67,32 +68,37 @@ class _OppurtunityPageState extends State<OppurtunityPage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(verticalDirection: VerticalDirection.down, children: [
-          Text(
+      child: Column(verticalDirection: VerticalDirection.down, children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
             "Fırsatlar",
             style: constants.quicksantMainColor(20),
           ),
-          Divider(),
-          Container(
-            child: ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                itemCount: 9,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 1,
-                    ),
-                    child: boxes[index],
-                  );
-                }),
-          ),
-        ]),
-      ),
+        ),
+        Divider(),
+        Text(
+          "Günlük kampanyalarımızı buradan inceleyebilirsiniz.",
+          style: constants.quicksantBlackThinColor(12),
+        ),
+        Divider(),
+        Container(
+          child: ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              physics: ClampingScrollPhysics(),
+              itemCount: 9,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 1,
+                  ),
+                  child: boxes[index],
+                );
+              }),
+        ),
+      ]),
     );
   }
 }

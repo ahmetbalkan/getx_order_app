@@ -1,10 +1,11 @@
-import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:firebase_getx_order_app/view/profilepage/profile_page.dart';
+import 'package:firebase_getx_order_app/view/repeat_order_page/repeat_order_page.dart';
 import 'package:firebase_getx_order_app/view/shopping_cart/shopping_cart_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../constants/colors.dart';
 import '../constants/constant.dart';
@@ -29,11 +30,14 @@ final screen = [
 int currentindex = 0;
 
 late PageController _pageController;
+late PersistentTabController _controller;
 
 class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    _controller = PersistentTabController(initialIndex: 0);
+
     _pageController = PageController();
   }
 
@@ -43,7 +47,6 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
   var constants = locator.get<Constants>();
   var ct = locator.get<ColorsTheme>();
 
@@ -53,119 +56,135 @@ class _MainPageState extends State<MainPage> {
         decoration: const BoxDecoration(color: Colors.white),
         child: SafeArea(
           child: Scaffold(
-            bottomNavigationBar: BottomBarWithSheet(
-              controller: _bottomBarController,
-              autoClose: true,
-              mainActionButtonBuilder: (context) {
-                return Image.asset(
-                  "assets/button.png",
-                  width: 60,
-                );
-              },
-              mainActionButtonTheme: MainActionButtonTheme(
-                color: ct.mainColor,
-                size: 22,
-                icon: const FaIcon(
-                  FontAwesomeIcons.retweet,
-                  color: Colors.white,
+              backgroundColor: ct.backgroundColor,
+              appBar: AppBar(
+                title: Image.asset(
+                  alignment: Alignment.center,
+                  "assets/logo-white.png",
+                  width: 75,
                 ),
-              ),
-              bottomBarTheme: const BottomBarTheme(
-                selectedItemIconSize: 35,
-                mainButtonPosition: MainButtonPosition.middle,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-                ),
-                itemIconColor: Colors.grey,
-                itemTextStyle: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 10.0,
-                ),
-                selectedItemIconColor: Colors.blue,
-                selectedItemTextStyle: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 10.0,
-                ),
-              ),
-              onSelectItem: (index) {
-                setState(() {
-                  _onItemTapped(index);
-                });
-              },
-              sheetChild: Center(
-                child: Column(
-                  children: [
-                    Text(
-                      "Another content",
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                      ),
+                centerTitle: true,
+                actions: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: const VerticalDivider(
+                      width: 2,
+                      color: Colors.white,
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          _bottomBarController.closeSheet();
-                        },
-                        child: const Text("Kapat"))
-                  ],
-                ),
-              ),
-              items: const [
-                BottomBarWithSheetItem(icon: Icons.people, label: "Ana Sayfa"),
-                BottomBarWithSheetItem(icon: Icons.settings, label: "Fırsat"),
-                BottomBarWithSheetItem(
-                    icon: Icons.shopping_cart, label: "Sepet"),
-                BottomBarWithSheetItem(icon: Icons.favorite, label: "Profil"),
-              ],
-            ),
-            backgroundColor: ct.backgroundColor,
-            appBar: AppBar(
-              title: Image.asset(
-                alignment: Alignment.center,
-                "assets/logo-white.png",
-                width: 75,
-              ),
-              centerTitle: true,
-              actions: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: const VerticalDivider(
-                    width: 2,
-                    color: Colors.white,
                   ),
+                  const SizedBox(width: 15),
+                  const Center(
+                      child: const FaIcon(
+                    FontAwesomeIcons.headset,
+                    size: 25,
+                    color: Colors.white,
+                  )),
+                  const SizedBox(
+                    width: 20,
+                  )
+                ],
+              ),
+              body: PersistentTabView(
+                context,
+                controller: _controller,
+                screens: _buildScreens(),
+                items: _navBarsItems(),
+                confineInSafeArea: true,
+                backgroundColor: Colors.white,
+                handleAndroidBackButtonPress: true,
+                resizeToAvoidBottomInset: true,
+                stateManagement: true,
+                hideNavigationBarWhenKeyboardShows: true,
+                decoration: NavBarDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  colorBehindNavBar: Colors.white,
                 ),
-                const SizedBox(width: 15),
-                const Center(
-                    child: const FaIcon(
-                  FontAwesomeIcons.headset,
-                  size: 25,
-                  color: Colors.white,
-                )),
-                const SizedBox(
-                  width: 20,
-                )
-              ],
-            ),
-            body: PageView(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() => currentindex = index);
-                },
-                children: screen),
-          ),
+                popAllScreensOnTapOfSelectedTab: true,
+                popActionScreens: PopActionScreensType.all,
+                itemAnimationProperties: ItemAnimationProperties(
+                  duration: Duration(milliseconds: 200),
+                  curve: Curves.ease,
+                ),
+                screenTransitionAnimation: ScreenTransitionAnimation(
+                  animateTabTransition: true,
+                  curve: Curves.linear,
+                  duration: Duration(milliseconds: 200),
+                ),
+                navBarStyle: NavBarStyle.style16,
+              )),
         ));
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      currentindex = index;
-      //
-      //
-      //using this page controller you can make beautiful animation effects
-      _pageController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
-    });
+  List<Widget> _buildScreens() {
+    return [
+      Homepage(),
+      OppurtunityPage(),
+      RepeatOrderPage(),
+      ShoppingCartPage(),
+      ProfilePage()
+    ];
+  }
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.home),
+        title: ("Home"),
+        activeColorPrimary: ct.mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.star),
+        title: ("Fırsatlar"),
+        activeColorPrimary: ct.mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.repeat, color: Colors.white),
+        title: ("Sipariş Tekrarı"),
+        activeColorPrimary: ct.mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Stack(
+          children: [
+            Container(child: Icon(CupertinoIcons.shopping_cart)),
+            Positioned(
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: Container(
+                padding: EdgeInsets.all(1),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                constraints: BoxConstraints(
+                  minWidth: 12,
+                  minHeight: 12,
+                ),
+                child: Text(
+                  "2",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 9,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            )
+          ],
+        ),
+        title: ("Sepet"),
+        activeColorPrimary: ct.mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.settings),
+        title: ("Settings"),
+        activeColorPrimary: ct.mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+    ];
   }
 }

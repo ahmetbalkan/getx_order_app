@@ -19,7 +19,16 @@ class Constants {
         textStyle: TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: size,
-      color: ct.mainColor,
+      color: Colors.black,
+    ));
+  }
+
+  TextStyle quicksantBlackThinColor(double size) {
+    return GoogleFonts.kanit(
+        textStyle: TextStyle(
+      fontWeight: FontWeight.w200,
+      fontSize: size,
+      color: Colors.black,
     ));
   }
 
