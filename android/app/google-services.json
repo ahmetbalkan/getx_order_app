@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "236100935413-uan7asa4v2vnsk98sgkig97kegt0uubn.apps.googleusercontent.com",
+          "client_id": "236100935413-tm2jq1sqj0568k2rpq82o0o9ifv4735r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.codeline.firebase_getx_order_app",
-            "certificate_hash": "3d6f44a9e5188d2fbcdbe58e6dedb4066b69dc33"
+            "certificate_hash": "267a899e0606ab7f26414af65f66c761782f8e54"
           }
         },
         {

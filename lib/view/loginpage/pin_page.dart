@@ -1,15 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_getx_order_app/view/loginpage/login_controller.dart';
+import 'package:firebase_getx_order_app/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+
 import 'package:pinput/pinput.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
+import '../../locator.dart';
 
 class PinPage extends StatefulWidget {
   PinPage({Key? key}) : super(key: key);
@@ -19,10 +18,10 @@ class PinPage extends StatefulWidget {
 }
 
 class _PinPageState extends State<PinPage> {
-  ColorsTheme ct = ColorsTheme();
-
   LoginController _controller = Get.put(LoginController());
-  FirebaseAuth auth = FirebaseAuth.instance;
+
+  var _constants = locator.get<Constants>();
+  var _ct = locator.get<ColorsTheme>();
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -203,8 +202,8 @@ class _PinPageState extends State<PinPage> {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      ct.mainColor,
-                                      ct.mainColor2,
+                                      _ct.mainColor,
+                                      _ct.mainColor2,
                                     ],
                                     begin: FractionalOffset.center,
                                     end: FractionalOffset.bottomRight,

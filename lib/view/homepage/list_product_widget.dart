@@ -1,5 +1,7 @@
-import 'package:firebase_getx_order_app/main.dart';
 import 'package:flutter/material.dart';
+import '../../constants/colors.dart';
+import '../../constants/constant.dart';
+import '../../locator.dart';
 
 class ListProductWidget extends StatefulWidget {
   const ListProductWidget({Key? key}) : super(key: key);
@@ -10,6 +12,10 @@ class ListProductWidget extends StatefulWidget {
 
 class _ListProductWidgetState extends State<ListProductWidget> {
   List<Widget> boxes = [];
+
+  var _constants = locator.get<Constants>();
+  var _ct = locator.get<ColorsTheme>();
+
   @override
   void initState() {
     for (var i = 0; i < 6; i++) {
@@ -37,7 +43,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                           Text(
                             "Saka 19 lt Damacana",
                             textAlign: TextAlign.center,
-                            style: constants.quicksantGrey(12),
+                            style: _constants.quicksantGrey(12),
                           ),
                           Divider()
                         ],
@@ -45,7 +51,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                       subtitle: Text(
                         textAlign: TextAlign.center,
                         "40.50 TL",
-                        style: constants.quicksantMainColor(21),
+                        style: _constants.quicksantMainColor(21),
                       ),
                     ),
                     Container(
@@ -56,7 +62,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                       child: Center(
                           child: Text(
                         "Sepete Ekle",
-                        style: constants.quicksantwhite(14),
+                        style: _constants.quicksantwhite(14),
                       )),
                       padding: const EdgeInsets.all(12),
                     )
@@ -95,13 +101,13 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                           children: [
                             Text(
                               "Damacana Su",
-                              style: constants.quicksantMainColorBold(18),
+                              style: _constants.quicksantMainColorBold(18),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 12.0),
                               child: Text(
                                 "Tüm Ürünler >",
-                                style: constants.quicksantMainColor(12),
+                                style: _constants.quicksantMainColor(12),
                               ),
                             ),
                           ],

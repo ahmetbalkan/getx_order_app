@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../locator.dart';
@@ -11,12 +11,12 @@ class RepeatOrderPage extends StatefulWidget {
   _RepeatOrderPageState createState() => _RepeatOrderPageState();
 }
 
-var constants = locator.get<Constants>();
-var ct = locator.get<ColorsTheme>();
 List<Widget> boxes = [];
 
+var _constants = locator.get<Constants>();
+var _ct = locator.get<ColorsTheme>();
+
 class _RepeatOrderPageState extends State<RepeatOrderPage> {
-  @override
   @override
   void initState() {
     for (var i = 0; i < 9; i++) {
@@ -70,7 +70,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                                 children: [
                                                   Text(
                                                     "Sipariş Tarihi:",
-                                                    style: constants
+                                                    style: _constants
                                                         .quicksantBlackColor(
                                                             14),
                                                   ),
@@ -79,7 +79,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                                   ),
                                                   Text(
                                                     "23/10/1990",
-                                                    style: constants
+                                                    style: _constants
                                                         .quicksantBlackThinColor(
                                                             14),
                                                   ),
@@ -92,7 +92,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                                   children: [
                                                     Text(
                                                       "Toplam:",
-                                                      style: constants
+                                                      style: _constants
                                                           .quicksantBlackColor(
                                                               18),
                                                     ),
@@ -101,7 +101,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                                     ),
                                                     Text(
                                                       "550 TL",
-                                                      style: constants
+                                                      style: _constants
                                                           .quicksantBlackThinColor(
                                                               18),
                                                     ),
@@ -180,7 +180,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                         children: [
                                           Text(
                                             "Durum:",
-                                            style: constants
+                                            style: _constants
                                                 .quicksantBlackColor(14),
                                           ),
                                           SizedBox(
@@ -188,7 +188,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                           ),
                                           Text(
                                             "Teslim Edildi.",
-                                            style: constants
+                                            style: _constants
                                                 .quicksantMainColor(14),
                                           ),
                                         ],
@@ -222,7 +222,7 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
                                                     onPressed: () {},
                                                     child: Text(
                                                       "Siparişi Tekrarla",
-                                                      style: constants
+                                                      style: _constants
                                                           .quicksantwhite(14),
                                                     )),
                                               )
@@ -257,13 +257,13 @@ class _RepeatOrderPageState extends State<RepeatOrderPage> {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             "Geçmiş Siparişler",
-            style: constants.quicksantMainColor(20),
+            style: _constants.quicksantMainColor(20),
           ),
         ),
         Divider(),
         Text(
           "Lütfen tekrar etmek istediğiniz siparişi seçiniz.",
-          style: constants.quicksantBlackThinColor(12),
+          style: _constants.quicksantBlackThinColor(12),
         ),
         Divider(),
         Container(

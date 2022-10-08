@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../locator.dart';
@@ -11,12 +10,11 @@ class OppurtunityPage extends StatefulWidget {
   _OppurtunityPageState createState() => _OppurtunityPageState();
 }
 
-var constants = locator.get<Constants>();
-var ct = locator.get<ColorsTheme>();
 List<Widget> boxes = [];
 
 class _OppurtunityPageState extends State<OppurtunityPage> {
-  @override
+  var _constants = locator.get<Constants>();
+  var _ct = locator.get<ColorsTheme>();
   @override
   void initState() {
     for (var i = 0; i < 9; i++) {
@@ -49,7 +47,7 @@ class _OppurtunityPageState extends State<OppurtunityPage> {
                           child: Text(
                         textAlign: TextAlign.left,
                         "Tüm damacana ürünlerinde %50 indirim ",
-                        style: constants.quicksantwhite(14),
+                        style: _constants.quicksantwhite(14),
                       )),
                       padding: const EdgeInsets.all(12),
                     )
@@ -73,13 +71,13 @@ class _OppurtunityPageState extends State<OppurtunityPage> {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             "Fırsatlar",
-            style: constants.quicksantMainColor(20),
+            style: _constants.quicksantMainColor(20),
           ),
         ),
         Divider(),
         Text(
           "Günlük kampanyalarımızı buradan inceleyebilirsiniz.",
-          style: constants.quicksantBlackThinColor(12),
+          style: _constants.quicksantBlackThinColor(12),
         ),
         Divider(),
         Container(

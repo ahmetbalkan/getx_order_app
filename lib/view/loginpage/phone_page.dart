@@ -1,14 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
+import '../../controller/login_controller.dart';
 import '../../locator.dart';
-import 'login_controller.dart';
+import '../../main.dart';
 import 'pin_page.dart';
 
 class PhonePage extends StatefulWidget {
@@ -20,10 +18,10 @@ class PhonePage extends StatefulWidget {
 
 LoginController _controller = Get.put(LoginController());
 
-class _PhonePageState extends State<PhonePage> {
-  var constants = locator.get<Constants>();
-  var ct = locator.get<ColorsTheme>();
+var _constants = locator.get<Constants>();
+var _ct = locator.get<ColorsTheme>();
 
+class _PhonePageState extends State<PhonePage> {
   GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
@@ -72,7 +70,7 @@ class _PhonePageState extends State<PhonePage> {
                                 'Su Sipariş Uygulaması',
                                 style: GoogleFonts.quicksand(
                                     textStyle:
-                                        constants.quicksantMainColorBold(10)),
+                                        _constants.quicksantMainColorBold(10)),
                               ),
                             ],
                           ),
@@ -87,7 +85,7 @@ class _PhonePageState extends State<PhonePage> {
                                   Text(
                                     'Telefon numarası ile giriş',
                                     style: GoogleFonts.quicksand(
-                                        textStyle: constants
+                                        textStyle: _constants
                                             .quicksantMainColorBold(18)),
                                   ),
                                   SizedBox(
@@ -101,15 +99,15 @@ class _PhonePageState extends State<PhonePage> {
                                     'Lütfen giriş yapmak için telefon numaranızı 0\'dan itibaren giriniz. (örnek: 551 111 11 11)',
                                     style: GoogleFonts.quicksand(
                                         textStyle:
-                                            constants.quicksantMainColor(14)),
+                                            _constants.quicksantMainColor(14)),
                                   ),
                                   SizedBox(
                                     height: 20,
                                   ),
                                   IntlPhoneField(
-                                    style: constants.quicksantGrey(17),
+                                    style: _constants.quicksantGrey(17),
                                     dropdownTextStyle:
-                                        constants.quicksantGrey(16),
+                                        _constants.quicksantGrey(16),
                                     invalidNumberMessage:
                                         "Numara şartları sağlamıyor.",
                                     initialCountryCode: "TR",
@@ -149,8 +147,8 @@ class _PhonePageState extends State<PhonePage> {
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
                                           colors: [
-                                            ct.mainColor,
-                                            ct.mainColor2,
+                                            _ct.mainColor,
+                                            _ct.mainColor2,
                                           ],
                                           begin: FractionalOffset.center,
                                           end: FractionalOffset.bottomRight,
@@ -180,7 +178,7 @@ class _PhonePageState extends State<PhonePage> {
                                                     left: 15.0),
                                                 child: Text(
                                                   "Giriş Yap",
-                                                  style: constants
+                                                  style: _constants
                                                       .quicksantwhite(17),
                                                 ),
                                               ),

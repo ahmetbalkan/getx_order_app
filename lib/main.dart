@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_getx_order_app/constants/colors.dart';
 import 'package:firebase_getx_order_app/view/enter_page.dart';
+import 'package:firebase_getx_order_app/view/homepage/homepage.dart';
 import 'package:firebase_getx_order_app/view/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,8 +22,8 @@ void main() async {
   runApp(const MyApp());
 }
 
-var constants = locator.get<Constants>();
-var ct = locator.get<ColorsTheme>();
+var _constants = locator.get<Constants>();
+var _ct = locator.get<ColorsTheme>();
 
 GetStorage box = GetStorage();
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -38,10 +39,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Sual',
         theme: ThemeData(
-          primarySwatch: ct.materialColorMain,
+          primarySwatch: _ct.materialColorMain,
         ),
-        home: MainPage()
-        //user != null ? MainPage() : EnterPage(),
+        home: MainPage() //user != null ? MainPage() : EnterPage(),
         );
   }
 }

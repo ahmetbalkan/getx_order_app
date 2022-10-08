@@ -3,14 +3,14 @@ import 'package:firebase_getx_order_app/view/loginpage/phone_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constants/colors.dart';
+import '../locator.dart';
 
 class EnterPage extends StatelessWidget {
   EnterPage({Key? key}) : super(key: key);
 
-  ColorsTheme ct = ColorsTheme();
-  Constants constants = Constants();
+  var _constants = locator.get<Constants>();
+  var _ct = locator.get<ColorsTheme>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class EnterPage extends StatelessWidget {
                     Text(
                       'Su Sipariş Uygulaması',
                       style: GoogleFonts.quicksand(
-                          textStyle: constants.quicksantMainColorBold(10)),
+                          textStyle: _constants.quicksantMainColorBold(10)),
                     ),
                   ],
                 ),
@@ -43,7 +43,7 @@ class EnterPage extends StatelessWidget {
                       child: Text(
                         'Giriş',
                         style: GoogleFonts.quicksand(
-                            textStyle: constants.quicksantMainColorBold(18)),
+                            textStyle: _constants.quicksantMainColorBold(18)),
                       ),
                     ),
                     Divider(),
@@ -53,7 +53,7 @@ class EnterPage extends StatelessWidget {
                       child: Text(
                         'Lütfen sipariş verebilmek için giriş yapınız.',
                         style: GoogleFonts.quicksand(
-                            textStyle: constants.quicksantMainColor(14)),
+                            textStyle: _constants.quicksantMainColor(14)),
                       ),
                     ),
                     Padding(
@@ -66,8 +66,8 @@ class EnterPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                ct.mainColor,
-                                ct.mainColor2,
+                                _ct.mainColor,
+                                _ct.mainColor2,
                               ],
                               begin: FractionalOffset.center,
                               end: FractionalOffset.bottomRight,
@@ -94,7 +94,7 @@ class EnterPage extends StatelessWidget {
                                     padding: const EdgeInsets.only(left: 15.0),
                                     child: Text(
                                       "Giriş Yap",
-                                      style: constants.quicksantwhite(17),
+                                      style: _constants.quicksantwhite(17),
                                     ),
                                   ),
                                 ],

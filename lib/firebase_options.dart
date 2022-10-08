@@ -70,6 +70,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '236100935413',
     projectId: 'order-app-5044c',
     storageBucket: 'order-app-5044c.appspot.com',
+    androidClientId: '236100935413-tm2jq1sqj0568k2rpq82o0o9ifv4735r.apps.googleusercontent.com',
     iosClientId: '236100935413-7f45acen9kaumj35n2kk54rl02t3kbb0.apps.googleusercontent.com',
     iosBundleId: 'com.codeline.firebaseGetxOrderApp',
   );

@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import '../../../constants/colors.dart';
 import '../../../constants/constant.dart';
-import '../../../locator.dart';
+import '../../locator.dart';
 
 class SlideWidget extends StatefulWidget {
   const SlideWidget({
@@ -16,10 +15,10 @@ class SlideWidget extends StatefulWidget {
 }
 
 int _currentIndex = 0;
-var constants = locator.get<Constants>();
-var ct = locator.get<ColorsTheme>();
 
 class _SlideWidgetState extends State<SlideWidget> {
+  var _constants = locator.get<Constants>();
+  var _ct = locator.get<ColorsTheme>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,7 +46,7 @@ class _SlideWidgetState extends State<SlideWidget> {
                       bottom: 10.0,
                     ),
                     elevation: 6.0,
-                    shadowColor: ct.mainColor,
+                    shadowColor: _ct.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -84,7 +83,7 @@ class _SlideWidgetState extends State<SlideWidget> {
               margin: EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: _currentIndex == index ? ct.mainColor : ct.mainColor2,
+                color: _currentIndex == index ? _ct.mainColor : _ct.mainColor2,
               ),
             );
           }).toList(),

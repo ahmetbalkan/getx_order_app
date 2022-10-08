@@ -2,11 +2,10 @@ import 'package:firebase_getx_order_app/view/profilepage/profile_page.dart';
 import 'package:firebase_getx_order_app/view/repeat_order_page/repeat_order_page.dart';
 import 'package:firebase_getx_order_app/view/shopping_cart/shopping_cart_page.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
 import '../constants/colors.dart';
 import '../constants/constant.dart';
 import '../locator.dart';
@@ -47,8 +46,8 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  var constants = locator.get<Constants>();
-  var ct = locator.get<ColorsTheme>();
+  var _constants = locator.get<Constants>();
+  var _ct = locator.get<ColorsTheme>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,7 @@ class _MainPageState extends State<MainPage> {
         decoration: const BoxDecoration(color: Colors.white),
         child: SafeArea(
           child: Scaffold(
-              backgroundColor: ct.backgroundColor,
+              backgroundColor: _ct.backgroundColor,
               appBar: AppBar(
                 title: Image.asset(
                   alignment: Alignment.center,
@@ -130,19 +129,19 @@ class _MainPageState extends State<MainPage> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColorPrimary: ct.mainColor,
+        activeColorPrimary: _ct.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.star),
         title: ("Fırsatlar"),
-        activeColorPrimary: ct.mainColor,
+        activeColorPrimary: _ct.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.repeat, color: Colors.white),
         title: ("Sipariş Tekrarı"),
-        activeColorPrimary: ct.mainColor,
+        activeColorPrimary: _ct.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
@@ -176,13 +175,13 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
         title: ("Sepet"),
-        activeColorPrimary: ct.mainColor,
+        activeColorPrimary: _ct.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: ("Settings"),
-        activeColorPrimary: ct.mainColor,
+        activeColorPrimary: _ct.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
