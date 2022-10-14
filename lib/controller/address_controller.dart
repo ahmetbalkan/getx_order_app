@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
-import 'package:firebase_getx_order_app/service/address/address_service.dart';
-import 'package:firebase_getx_order_app/service/address/adress_base.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder_buddy/geocoder_buddy.dart';
@@ -12,20 +11,35 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../locator.dart';
 
+import '../service/address/address_service.dart';
+import '../service/address/adress_base.dart';
+
 AddressBase _addressService = locator.get<AddressService>();
 
-class AddressController extends GetxController {
+final FirebaseAuth auth = FirebaseAuth.instance;
+
+class AddressController extends GetxController with StateMixin<AddressModel> {
   var addressList = <AddressModel>[].obs;
+  var activeAddress = <AddressModel>[].obs;
   var currentLatlng = LatLng(41.0255771, 28.9728992).obs;
   var isDataLoading = false.obs;
   var isLocationLoading = false.obs;
   var getFullAddress = "".obs;
+  var count = 0.obs;
+  Rxn<String> rxstring = Rxn<String>();
+  Rxn<String> rxstring2 = Rxn<String>();
   var formAdressModel = Rxn<AddressModel>();
+  var homePageAddressModel = Rxn<AddressModel>();
 
   var permission = LocationPermission.denied.obs;
   late bool serviceEnabled;
 
-  void getAddressList() async {
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  getAddressList() async {
     try {
       isDataLoading(true);
       addressList.value = await _addressService.getAllAdress();
@@ -39,6 +53,15 @@ class AddressController extends GetxController {
   void addAddress(AddressModel addressModel) async {
     try {
       _addressService.addAddress(addressModel);
+      addressList.add(addressModel);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void isDefaultUpdate(int isDefault, int id) async {
+    try {
+      _addressService.isDefaultUpdate(isDefault);
     } catch (e) {
       print(e);
     }
@@ -60,7 +83,6 @@ class AddressController extends GetxController {
     try {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
-
       if (placemarks.isNotEmpty) {
         if (placemarks.first.country == "Türkiye") {
           String fullAddress = placemarks.first.subLocality.toString() +
@@ -80,6 +102,7 @@ class AddressController extends GetxController {
 
           formAdressModel.value = AddressModel(
               addressid: "1",
+              userid: auth.currentUser!.uid,
               namesurname: "",
               addresstitle: "",
               county: placemarks.first.country.toString(),
@@ -91,7 +114,8 @@ class AddressController extends GetxController {
               doornumber: "",
               lat: latLng.latitude.toString(),
               longi: latLng.longitude.toString(),
-              fulladdress: fullAddress);
+              fulladdress: fullAddress,
+              isDefault: 0.toString());
         } else {
           getFullAddress.value = "BU ülkede hizmet verilmemektedir.";
         }
@@ -100,7 +124,6 @@ class AddressController extends GetxController {
       }
     } catch (e) {
       getFullAddress.value = "Adres bulunamadı.";
-      print(e);
     }
   }
 }
