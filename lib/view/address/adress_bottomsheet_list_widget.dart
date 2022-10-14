@@ -1,22 +1,30 @@
+import 'package:firebase_getx_order_app/view/homepage/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../controller/address_controller.dart';
 import '../../locator.dart';
 import 'adress_map_page.dart';
 
-class AdressListWidget extends StatelessWidget {
+class AdressListWidget extends StatefulWidget {
   AdressListWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<AdressListWidget> createState() => _AdressListWidgetState();
+}
+
+class _AdressListWidgetState extends State<AdressListWidget> {
   var _constants = locator.get<Constants>();
+
   var _ct = locator.get<ColorsTheme>();
 
-  List<Widget> boxes = [];
-  AddressController _controller = Get.put(AddressController());
+  var isChecked = false;
+  late Color colorList;
+
+  AddressController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -166,92 +174,120 @@ class AdressListWidget extends StatelessWidget {
                               physics: ClampingScrollPhysics(),
                               itemCount: _controller.addressList.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 30),
-                                  child: Container(
-                                      margin: EdgeInsets.only(bottom: 5),
-                                      height: 120,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.blue.shade300,
-                                          width: 1,
+                                return InkWell(
+                                  onTap: () {
+                                    _controller.isDefaultUpdate(
+                                        int.parse(_controller
+                                            .addressList[index].addressid
+                                            .toString()),
+                                        index);
+
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Homepage()));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 5, horizontal: 30),
+                                    child: Container(
+                                        margin: EdgeInsets.only(bottom: 5),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: _controller.addressList[index]
+                                                      .isDefault ==
+                                                  "1"
+                                              ? Color(0xFFe9f8ff)
+                                              : Colors.white,
+                                          border: Border.all(
+                                            color: Colors.blue.shade300,
+                                            width: 1,
+                                          ),
                                         ),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 8,
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      vertical: 5,
-                                                      horizontal: 20),
-                                                  child: Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.house,
-                                                        size: 25,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Text(
-                                                        _controller
-                                                            .addressList[index]
-                                                            .addresstitle,
-                                                        style: _constants
-                                                            .quicksantBlackColor(
-                                                                18),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 10),
-                                                  child: Row(
-                                                    children: [
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Flexible(
-                                                        child: Text(
+                                        child: Row(
+                                          children: [
+                                            Flexible(
+                                              flex: 8,
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        vertical: 5,
+                                                        horizontal: 20),
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.house,
+                                                          size: 25,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
                                                           _controller
                                                               .addressList[
                                                                   index]
-                                                              .fulladdress,
+                                                              .addresstitle,
                                                           style: _constants
-                                                              .quicksantBlackThinColor(
-                                                                  15),
+                                                              .quicksantBlackColor(
+                                                                  18),
                                                         ),
-                                                      )
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
-                                                )
-                                              ],
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 10),
+                                                    child: Row(
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Flexible(
+                                                          child: Text(
+                                                            _controller
+                                                                .addressList[
+                                                                    index]
+                                                                .fulladdress,
+                                                            style: _constants
+                                                                .quicksantBlackThinColor(
+                                                                    15),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Flexible(
-                                            flex: 2,
-                                            child: Checkbox(
+                                            Checkbox(
+                                              checkColor: _ct.mainColor,
                                               shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),
+                                              value: _controller
+                                                          .addressList[index]
+                                                          .isDefault ==
+                                                      "1"
+                                                  ? true
+                                                  : false,
                                               onChanged: (value) {},
-                                              value: false,
-                                            ),
-                                          )
-                                        ],
-                                      )),
+                                            )
+                                          ],
+                                        )),
+                                  ),
                                 );
-                              }))
+                              })),
+                  SizedBox(
+                    width: 10,
+                  ),
                 ],
               ),
             ),

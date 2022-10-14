@@ -1,22 +1,37 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:firebase_getx_order_app/service/isar_service.dart';
+
 import 'package:firebase_getx_order_app/view/homepage/slide_mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:isar/isar.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../controller/address_controller.dart';
 import '../../locator.dart';
 import '../../model/address_model.dart';
-import '../address/address_widget.dart';
+import '../../service/address/address_service.dart';
+import '../address/homepage_address_widget.dart';
 import 'list_product_widget.dart';
+import 'package:http/http.dart' as http;
 
 class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+  const Homepage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HomepageState createState() => _HomepageState();
 }
 
+var _addressService = locator.get<AddressService>();
+var _isarService = locator.get<IsarService>();
+
 class _HomepageState extends State<Homepage> {
+  AddressController _controller = Get.put(AddressController());
+
   @override
   Widget build(BuildContext context) {
     var _constants = locator.get<Constants>();
@@ -38,51 +53,19 @@ class _HomepageState extends State<Homepage> {
                       constraints: BoxConstraints(
                         minHeight: viewportConstraints.maxHeight,
                       ),
-                      child: GetBuilder<AddressController>(
-                        init: AddressController(),
-                        initState: (_) {},
-                        builder: (_) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ElevatedButton(
-                                  onPressed: () {
-                                    AddressModel addressModel = AddressModel(
-                                        addressid: '',
-                                        namesurname: "ahmet",
-                                        addresstitle: "ew",
-                                        county: "Türkiye",
-                                        town: "ist",
-                                        quarter: "halkalı",
-                                        street: "turgutlu",
-                                        no: "8",
-                                        floor: "4",
-                                        doornumber: "9",
-                                        lat: '1.1',
-                                        longi: '1.1',
-                                        fulladdress:
-                                            "asdasdasdasdasd asdasdasd asd");
-                                    /* county: 
-                              town: 
-                              quarter: 
-                              street: 
-                              no: 
-                              floor: 
-                              doornumber: 
-                              lat: _.formAdressModel.value!.lat,
-                              longi: _.formAdressModel.value!.longi,
-                              fulladdress:
-                                  _.formAdressModel.value!.fulladdress);*/
-                                    _.addAddress(addressModel);
-                                  },
-                                  child: Text("asdasd")),
-                              AdressWidget(),
-                              SlideWidget(),
-                              ListProductWidget()
-                            ],
-                          );
-                        },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          ElevatedButton(
+                              onPressed: () async {
+                                await _isarService.cleanDb();
+                              },
+                              child: Text("getir")),
+                          AdressWidget(),
+                          SlideWidget(),
+                          ListProductWidget(),
+                        ],
                       )),
                 );
               },

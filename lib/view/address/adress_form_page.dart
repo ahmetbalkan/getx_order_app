@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
+import 'package:firebase_getx_order_app/view/homepage/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -32,7 +34,7 @@ class AdressFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Image.asset(
             alignment: Alignment.center,
@@ -73,13 +75,15 @@ class AdressFormPage extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(children: [
                 Container(
-                    height: 200,
+                    height: 150,
                     width: MediaQuery.of(context).size.width,
                     child: Stack(
                       children: [
                         GoogleMap(
                           mapToolbarEnabled: false,
                           mapType: MapType.normal,
+                          zoomControlsEnabled: false,
+                          zoomGesturesEnabled: false,
                           initialCameraPosition: CameraPosition(
                             target: LatLng(
                                 double.parse(_.formAdressModel.value!.lat),
@@ -95,7 +99,7 @@ class AdressFormPage extends StatelessWidget {
                           child: FaIcon(
                             FontAwesomeIcons.locationDot,
                             color: _ct.mainColor,
-                            size: 45,
+                            size: 25,
                           ),
                         ),
                       ],
@@ -314,6 +318,8 @@ class AdressFormPage extends StatelessWidget {
                         onTap: () async {
                           AddressModel addressModel = AddressModel(
                               addressid: '',
+                              userid:
+                                  _.formAdressModel.value!.userid.toString(),
                               namesurname: _nameSurnameController.text,
                               addresstitle: _addressTitleController.text,
                               county: _countryController.text.toString(),
@@ -325,10 +331,12 @@ class AdressFormPage extends StatelessWidget {
                               doornumber: _doorController.text.toString(),
                               lat: _.formAdressModel.value!.lat,
                               longi: _.formAdressModel.value!.longi,
-                              fulladdress:
-                                  _.formAdressModel.value!.fulladdress);
+                              fulladdress: _.formAdressModel.value!.fulladdress,
+                              isDefault: _.formAdressModel.value!.isDefault);
 
                           _.addAddress(addressModel);
+
+                          Get.offAll(Homepage());
                         },
                         child: Container(
                           width: double.infinity,
@@ -357,13 +365,13 @@ class AdressFormPage extends StatelessWidget {
                                 children: [
                                   Icon(
                                     size: 20,
-                                    Icons.login,
+                                    Icons.add_circle,
                                     color: Colors.white,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 15.0),
                                     child: Text(
-                                      "Giriş Yap",
+                                      "Adresi Ekle",
                                       style: _constants.quicksantwhite(17),
                                     ),
                                   ),
@@ -376,7 +384,6 @@ class AdressFormPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(_.formAdressModel.value!.fulladdress),
               ]),
             );
           },

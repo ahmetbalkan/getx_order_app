@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
+import '../../controller/address_controller.dart';
 import '../../locator.dart';
 
 class ListProductWidget extends StatefulWidget {
@@ -83,62 +85,68 @@ class _ListProductWidgetState extends State<ListProductWidget> {
       physics: ClampingScrollPhysics(),
       child: Column(
         children: <Widget>[
-          Container(
-            child: ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Damacana Su",
-                              style: _constants.quicksantMainColorBold(18),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 12.0),
-                              child: Text(
-                                "Tüm Ürünler >",
-                                style: _constants.quicksantMainColor(12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Divider(),
-                      ),
-                      Column(
+          GetBuilder<AddressController>(
+            init: AddressController(),
+            initState: (_) {},
+            builder: (_) {
+              return Container(
+                child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    physics: ClampingScrollPhysics(),
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 270,
-                            child: ListView.builder(
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 1, top: 8, bottom: 8),
-                                  child: boxes[index],
-                                );
-                              },
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Damacana Su",
+                                  style: _constants.quicksantMainColorBold(18),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 12.0),
+                                  child: Text(
+                                    "Tüm Ürünler >",
+                                    style: _constants.quicksantMainColor(12),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Divider(),
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                height: 270,
+                                child: ListView.builder(
+                                  physics: BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  itemBuilder: (context, int index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 1, top: 8, bottom: 8),
+                                      child: boxes[index],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
-                      ),
-                    ],
-                  );
-                }),
+                      );
+                    }),
+              );
+            },
           )
         ],
       ),

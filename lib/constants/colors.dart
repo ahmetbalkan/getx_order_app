@@ -20,4 +20,6 @@ class ColorsTheme {
       900: Color(0xFF31B0FF),
     },
   );
+
+  Color ListActiveColor = const Color(0xFFe9f8f);
 }

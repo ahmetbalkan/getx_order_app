@@ -6,4 +6,5 @@ abstract class AddressBase {
   Future<List<AddressModel>> getAllAdress();
   bool deleteAddress(String id);
   bool updateAddress(String id);
+  Future<void> isDefaultUpdate(int yeniid);
 }
