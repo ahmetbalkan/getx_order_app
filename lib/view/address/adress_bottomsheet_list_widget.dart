@@ -145,146 +145,155 @@ class _AdressListWidgetState extends State<AdressListWidget> {
               physics: ClampingScrollPhysics(),
               child: Column(
                 children: [
-                  Obx(() => _controller.isDataLoading == true
-                      ? Center(
-                          child: Column(
-                          children: [
-                            CircularProgressIndicator(),
-                          ],
-                        ))
-                      : _controller.addressList.length == 0
-                          ? Column(children: [
-                              SizedBox(
-                                height: 60,
-                              ),
-                              Icon(
-                                Icons.error,
-                                size: 50,
-                                color: _ct.mainColor,
-                              ),
-                              Text(
-                                "Adresiniz bulunmuyor. Lütfen adres ekleyiniz.",
-                                style: _constants.quicksantBlackColor(16),
-                              )
-                            ])
-                          : ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              physics: ClampingScrollPhysics(),
-                              itemCount: _controller.addressList.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                  onTap: () {
-                                    _controller.isDefaultUpdate(
-                                        int.parse(_controller
-                                            .addressList[index].addressid
-                                            .toString()),
-                                        index);
-
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Homepage()));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 30),
-                                    child: Container(
-                                        margin: EdgeInsets.only(bottom: 5),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: _controller.addressList[index]
-                                                      .isDefault ==
-                                                  "1"
-                                              ? Color(0xFFe9f8ff)
-                                              : Colors.white,
-                                          border: Border.all(
-                                            color: Colors.blue.shade300,
-                                            width: 1,
-                                          ),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Flexible(
-                                              flex: 8,
-                                              child: Column(
+                  GetBuilder<AddressController>(
+                      init: AddressController(),
+                      builder: (controller) {
+                        return controller.isDataLoading == true
+                            ? Center(
+                                child: Column(
+                                children: [
+                                  CircularProgressIndicator(),
+                                ],
+                              ))
+                            : controller.addressList.length == 0
+                                ? Column(children: [
+                                    SizedBox(
+                                      height: 60,
+                                    ),
+                                    Icon(
+                                      Icons.error,
+                                      size: 50,
+                                      color: _ct.mainColor,
+                                    ),
+                                    Text(
+                                      "Adresiniz bulunmuyor. Lütfen adres ekleyiniz.",
+                                      style: _constants.quicksantBlackColor(16),
+                                    )
+                                  ])
+                                : ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    physics: ClampingScrollPhysics(),
+                                    itemCount: controller.addressList.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          controller.isDefaultUpdate(
+                                              int.parse(controller
+                                                  .addressList[index].addressid
+                                                  .toString()),
+                                              index);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 30),
+                                          child: Container(
+                                              margin:
+                                                  EdgeInsets.only(bottom: 5),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: controller
+                                                            .addressList[index]
+                                                            .isDefault ==
+                                                        "1"
+                                                    ? Color(0xFFe9f8ff)
+                                                    : Colors.white,
+                                                border: Border.all(
+                                                  color: Colors.blue.shade300,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              child: Row(
                                                 children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 5,
-                                                        horizontal: 20),
-                                                    child: Row(
+                                                  Flexible(
+                                                    flex: 8,
+                                                    child: Column(
                                                       children: [
-                                                        Icon(
-                                                          Icons.house,
-                                                          size: 25,
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text(
-                                                          _controller
-                                                              .addressList[
-                                                                  index]
-                                                              .addresstitle,
-                                                          style: _constants
-                                                              .quicksantBlackColor(
-                                                                  18),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 10),
-                                                    child: Row(
-                                                      children: [
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Flexible(
-                                                          child: Text(
-                                                            _controller
-                                                                .addressList[
-                                                                    index]
-                                                                .fulladdress,
-                                                            style: _constants
-                                                                .quicksantBlackThinColor(
-                                                                    15),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 5,
+                                                                  horizontal:
+                                                                      20),
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons.house,
+                                                                size: 25,
+                                                              ),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Text(
+                                                                controller
+                                                                    .addressList[
+                                                                        index]
+                                                                    .addresstitle!,
+                                                                style: _constants
+                                                                    .quicksantBlackColor(
+                                                                        18),
+                                                              ),
+                                                            ],
                                                           ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      10),
+                                                          child: Row(
+                                                            children: [
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Flexible(
+                                                                child: Text(
+                                                                  controller
+                                                                      .addressList[
+                                                                          index]
+                                                                      .fulladdress!,
+                                                                  style: _constants
+                                                                      .quicksantBlackThinColor(
+                                                                          15),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
                                                         )
                                                       ],
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    height: 10,
+                                                  Checkbox(
+                                                    checkColor: _ct.mainColor,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                    value: controller
+                                                                .addressList[
+                                                                    index]
+                                                                .isDefault ==
+                                                            "1"
+                                                        ? true
+                                                        : false,
+                                                    onChanged: (value) {},
                                                   )
                                                 ],
-                                              ),
-                                            ),
-                                            Checkbox(
-                                              checkColor: _ct.mainColor,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              value: _controller
-                                                          .addressList[index]
-                                                          .isDefault ==
-                                                      "1"
-                                                  ? true
-                                                  : false,
-                                              onChanged: (value) {},
-                                            )
-                                          ],
-                                        )),
-                                  ),
-                                );
-                              })),
+                                              )),
+                                        ),
+                                      );
+                                    });
+                      }),
                   SizedBox(
                     width: 10,
                   ),

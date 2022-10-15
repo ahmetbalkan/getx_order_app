@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_getx_order_app/controller/address_controller.dart';
+import 'package:firebase_getx_order_app/model/address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../locator.dart';
+import '../../service/isar_service.dart';
 import 'adress_bottomsheet_list_widget.dart';
 
 class AdressWidget extends StatefulWidget {
@@ -70,16 +72,48 @@ class _AdressWidgetState extends State<AdressWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              FaIcon(FontAwesomeIcons.locationDot,
-                                  color: _ct.mainColor, size: 30),
-                              Obx(() => _controller.isDataLoading == true
-                                  ? CircularProgressIndicator()
-                                  : Text(
-                                      _controller.rxstring.string,
-                                      style: _constants.quicksantMainColor(15),
-                                    )),
-                              FaIcon(FontAwesomeIcons.angleDown,
-                                  color: _ct.mainColor),
+                              Expanded(
+                                flex: 1,
+                                child: FaIcon(FontAwesomeIcons.locationDot,
+                                    color: _ct.mainColor, size: 30),
+                              ),
+                              Expanded(
+                                  flex: 5,
+                                  child: Center(
+                                      child: GetBuilder<AddressController>(
+                                    init: AddressController(),
+                                    initState: (_) {},
+                                    builder: (_) {
+                                      return _.isDataLoading == true
+                                          ? Center(
+                                              child: Column(
+                                              children: [
+                                                CircularProgressIndicator(),
+                                              ],
+                                            ))
+                                          : Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text("Adres: ",
+                                                    style: _constants
+                                                        .quicksantMainThinColor(
+                                                            18)),
+                                                Text(
+                                                  _.homePageAddressModel.value
+                                                      .addresstitle!,
+                                                  style: _constants
+                                                      .quicksantMainColor(18),
+                                                ),
+                                              ],
+                                            );
+                                    },
+                                  ))),
+                              Expanded(
+                                flex: 1,
+                                child: FaIcon(FontAwesomeIcons.angleDown,
+                                    color: _ct.mainColor),
+                              ),
                             ]),
                       ),
                     ],

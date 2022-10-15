@@ -113,21 +113,96 @@ int _addressModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.addressid.length * 3;
-  bytesCount += 3 + object.addresstitle.length * 3;
-  bytesCount += 3 + object.county.length * 3;
-  bytesCount += 3 + object.doornumber.length * 3;
-  bytesCount += 3 + object.floor.length * 3;
-  bytesCount += 3 + object.fulladdress.length * 3;
-  bytesCount += 3 + object.isDefault.length * 3;
-  bytesCount += 3 + object.lat.length * 3;
-  bytesCount += 3 + object.longi.length * 3;
-  bytesCount += 3 + object.namesurname.length * 3;
-  bytesCount += 3 + object.no.length * 3;
-  bytesCount += 3 + object.quarter.length * 3;
-  bytesCount += 3 + object.street.length * 3;
-  bytesCount += 3 + object.town.length * 3;
-  bytesCount += 3 + object.userid.length * 3;
+  {
+    final value = object.addressid;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.addresstitle;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.county;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.doornumber;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.floor;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.fulladdress;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.isDefault;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.lat;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.longi;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.namesurname;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.no;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.quarter;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.street;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.town;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.userid;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -161,21 +236,21 @@ AddressModel _addressModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = AddressModel(
-    addressid: reader.readString(offsets[0]),
-    addresstitle: reader.readString(offsets[1]),
-    county: reader.readString(offsets[2]),
-    doornumber: reader.readString(offsets[3]),
-    floor: reader.readString(offsets[4]),
-    fulladdress: reader.readString(offsets[5]),
-    isDefault: reader.readString(offsets[6]),
-    lat: reader.readString(offsets[7]),
-    longi: reader.readString(offsets[8]),
-    namesurname: reader.readString(offsets[9]),
-    no: reader.readString(offsets[10]),
-    quarter: reader.readString(offsets[11]),
-    street: reader.readString(offsets[12]),
-    town: reader.readString(offsets[13]),
-    userid: reader.readString(offsets[14]),
+    addressid: reader.readStringOrNull(offsets[0]),
+    addresstitle: reader.readStringOrNull(offsets[1]),
+    county: reader.readStringOrNull(offsets[2]),
+    doornumber: reader.readStringOrNull(offsets[3]),
+    floor: reader.readStringOrNull(offsets[4]),
+    fulladdress: reader.readStringOrNull(offsets[5]),
+    isDefault: reader.readStringOrNull(offsets[6]),
+    lat: reader.readStringOrNull(offsets[7]),
+    longi: reader.readStringOrNull(offsets[8]),
+    namesurname: reader.readStringOrNull(offsets[9]),
+    no: reader.readStringOrNull(offsets[10]),
+    quarter: reader.readStringOrNull(offsets[11]),
+    street: reader.readStringOrNull(offsets[12]),
+    town: reader.readStringOrNull(offsets[13]),
+    userid: reader.readStringOrNull(offsets[14]),
   );
   object.id = id;
   return object;
@@ -189,35 +264,35 @@ P _addressModelDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 7:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 8:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 9:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 10:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 11:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 12:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 13:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 14:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -318,8 +393,26 @@ extension AddressModelQueryWhere
 extension AddressModelQueryFilter
     on QueryBuilder<AddressModel, AddressModel, QFilterCondition> {
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      addressidIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'addressid',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      addressidIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'addressid',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addressidEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -333,7 +426,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addressidGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -349,7 +442,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addressidLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -365,8 +458,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addressidBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -454,8 +547,26 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      addresstitleIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'addresstitle',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      addresstitleIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'addresstitle',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addresstitleEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -469,7 +580,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addresstitleGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -485,7 +596,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addresstitleLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -501,8 +612,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       addresstitleBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -589,8 +700,26 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      countyIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'county',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      countyIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'county',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> countyEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -604,7 +733,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       countyGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -620,7 +749,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       countyLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -635,8 +764,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> countyBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -725,8 +854,26 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      doornumberIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'doornumber',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      doornumberIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'doornumber',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       doornumberEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -740,7 +887,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       doornumberGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -756,7 +903,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       doornumberLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -772,8 +919,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       doornumberBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -860,8 +1007,26 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      floorIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'floor',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      floorIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'floor',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> floorEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -875,7 +1040,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       floorGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -890,7 +1055,7 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> floorLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -905,8 +1070,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> floorBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -995,8 +1160,26 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      fulladdressIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'fulladdress',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      fulladdressIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'fulladdress',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       fulladdressEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1010,7 +1193,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       fulladdressGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1026,7 +1209,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       fulladdressLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1042,8 +1225,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       fulladdressBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1184,8 +1367,26 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      isDefaultIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isDefault',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      isDefaultIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isDefault',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       isDefaultEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1199,7 +1400,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       isDefaultGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1215,7 +1416,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       isDefaultLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1231,8 +1432,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       isDefaultBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1319,8 +1520,25 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> latIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lat',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      latIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lat',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> latEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1334,7 +1552,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       latGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1349,7 +1567,7 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> latLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1364,8 +1582,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> latBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1451,8 +1669,26 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      longiIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'longi',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      longiIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'longi',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> longiEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1466,7 +1702,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       longiGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1481,7 +1717,7 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> longiLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1496,8 +1732,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> longiBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1586,8 +1822,26 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      namesurnameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'namesurname',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      namesurnameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'namesurname',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       namesurnameEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1601,7 +1855,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       namesurnameGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1617,7 +1871,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       namesurnameLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1633,8 +1887,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       namesurnameBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1721,8 +1975,25 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> noIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'no',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      noIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'no',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> noEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1735,7 +2006,7 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> noGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1750,7 +2021,7 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> noLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1765,8 +2036,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> noBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1853,8 +2124,26 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      quarterIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'quarter',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      quarterIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'quarter',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       quarterEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1868,7 +2157,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       quarterGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1884,7 +2173,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       quarterLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1900,8 +2189,8 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       quarterBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1988,8 +2277,26 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      streetIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'street',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      streetIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'street',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> streetEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2003,7 +2310,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       streetGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2019,7 +2326,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       streetLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2034,8 +2341,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> streetBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2123,8 +2430,25 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> townIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'town',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      townIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'town',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> townEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2138,7 +2462,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       townGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2153,7 +2477,7 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> townLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2168,8 +2492,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> townBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2257,8 +2581,26 @@ extension AddressModelQueryFilter
     });
   }
 
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      useridIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'userid',
+      ));
+    });
+  }
+
+  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
+      useridIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'userid',
+      ));
+    });
+  }
+
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> useridEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2272,7 +2614,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       useridGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2288,7 +2630,7 @@ extension AddressModelQueryFilter
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
       useridLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2303,8 +2645,8 @@ extension AddressModelQueryFilter
   }
 
   QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition> useridBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2901,91 +3243,91 @@ extension AddressModelQueryProperty
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> addressidProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> addressidProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'addressid');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> addresstitleProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> addresstitleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'addresstitle');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> countyProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> countyProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'county');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> doornumberProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> doornumberProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'doornumber');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> floorProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> floorProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'floor');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> fulladdressProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> fulladdressProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'fulladdress');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> isDefaultProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> isDefaultProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isDefault');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> latProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> latProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lat');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> longiProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> longiProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'longi');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> namesurnameProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> namesurnameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'namesurname');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> noProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> noProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'no');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> quarterProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> quarterProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'quarter');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> streetProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> streetProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'street');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> townProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> townProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'town');
     });
   }
 
-  QueryBuilder<AddressModel, String, QQueryOperations> useridProperty() {
+  QueryBuilder<AddressModel, String?, QQueryOperations> useridProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'userid');
     });

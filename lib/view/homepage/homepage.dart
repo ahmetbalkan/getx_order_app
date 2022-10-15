@@ -33,10 +33,15 @@ class _HomepageState extends State<Homepage> {
   AddressController _controller = Get.put(AddressController());
 
   @override
+  void initState() {
+    super.initState();
+    _controller.getAddressList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var _constants = locator.get<Constants>();
     var _ct = locator.get<ColorsTheme>();
-
     return Container(
         decoration: BoxDecoration(color: Colors.white),
         child: SafeArea(
@@ -45,28 +50,25 @@ class _HomepageState extends State<Homepage> {
             body: LayoutBuilder(
               builder:
                   (BuildContext context, BoxConstraints viewportConstraints) {
-                return SingleChildScrollView(
-                  physics: BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  scrollDirection: Axis.vertical,
-                  child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: viewportConstraints.maxHeight,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ElevatedButton(
-                              onPressed: () async {
-                                await _isarService.cleanDb();
-                              },
-                              child: Text("getir")),
-                          AdressWidget(),
-                          SlideWidget(),
-                          ListProductWidget(),
-                        ],
-                      )),
+                return Container(
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
+                    scrollDirection: Axis.vertical,
+                    child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: viewportConstraints.maxHeight,
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            AdressWidget(),
+                            SlideWidget(),
+                            ListProductWidget(),
+                          ],
+                        )),
+                  ),
                 );
               },
             ),

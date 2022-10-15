@@ -67,11 +67,11 @@ class AdressFormPage extends StatelessWidget {
           init: AddressController(),
           initState: (_) {},
           builder: (_) {
-            _cityController.text = _.formAdressModel.value!.town;
-            _countryController.text = _.formAdressModel.value!.county;
-            _quarterController.text = _.formAdressModel.value!.quarter;
-            _streetController.text = _.formAdressModel.value!.street;
-            _noController.text = _.formAdressModel.value!.no;
+            _cityController.text = _.formAdressModel.value!.town!;
+            _countryController.text = _.formAdressModel.value!.county!;
+            _quarterController.text = _.formAdressModel.value!.quarter!;
+            _streetController.text = _.formAdressModel.value!.street!;
+            _noController.text = _.formAdressModel.value!.no!;
             return SingleChildScrollView(
               child: Column(children: [
                 Container(
@@ -86,8 +86,8 @@ class AdressFormPage extends StatelessWidget {
                           zoomGesturesEnabled: false,
                           initialCameraPosition: CameraPosition(
                             target: LatLng(
-                                double.parse(_.formAdressModel.value!.lat),
-                                double.parse(_.formAdressModel.value!.longi)),
+                                double.parse(_.formAdressModel.value!.lat!),
+                                double.parse(_.formAdressModel.value!.longi!)),
                             zoom: 18,
                           ),
                           onCameraMove: (position) async {},

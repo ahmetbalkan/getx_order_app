@@ -13,29 +13,29 @@ import '../locator.dart';
 
 import '../service/address/address_service.dart';
 import '../service/address/adress_base.dart';
+import '../service/isar_service.dart';
 
 AddressBase _addressService = locator.get<AddressService>();
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-class AddressController extends GetxController with StateMixin<AddressModel> {
+class AddressController extends GetxController {
   var addressList = <AddressModel>[].obs;
-  var activeAddress = <AddressModel>[].obs;
+  final Rx<List<AddressModel>> _videoList = Rx<List<AddressModel>>([]);
   var currentLatlng = LatLng(41.0255771, 28.9728992).obs;
   var isDataLoading = false.obs;
   var isLocationLoading = false.obs;
   var getFullAddress = "".obs;
-  var count = 0.obs;
   Rxn<String> rxstring = Rxn<String>();
-  Rxn<String> rxstring2 = Rxn<String>();
   var formAdressModel = Rxn<AddressModel>();
-  var homePageAddressModel = Rxn<AddressModel>();
+  var homePageAddressModel = AddressModel().obs;
 
   var permission = LocationPermission.denied.obs;
   late bool serviceEnabled;
 
   @override
   void onInit() {
+    getAddressList();
     super.onInit();
   }
 
@@ -43,6 +43,11 @@ class AddressController extends GetxController with StateMixin<AddressModel> {
     try {
       isDataLoading(true);
       addressList.value = await _addressService.getAllAdress();
+      var b = addressList
+          .where((element) => element.isDefault!.contains("1"))
+          .toList();
+      homePageAddressModel.value = b.first;
+      update();
     } catch (e) {
       print(e);
     } finally {
@@ -50,24 +55,30 @@ class AddressController extends GetxController with StateMixin<AddressModel> {
     }
   }
 
-  void addAddress(AddressModel addressModel) async {
+  addAddress(AddressModel addressModel) async {
     try {
       _addressService.addAddress(addressModel);
       addressList.add(addressModel);
+      update();
     } catch (e) {
       print(e);
     }
   }
 
-  void isDefaultUpdate(int isDefault, int id) async {
+  isDefaultUpdate(int isDefault, int id) async {
     try {
-      _addressService.isDefaultUpdate(isDefault);
+      isDataLoading.value = true;
+      await _addressService.isDefaultUpdate(isDefault);
+      getAddressList();
+      homePageAddressModel.value = addressList[id];
     } catch (e) {
       print(e);
+    } finally {
+      isDataLoading.value = false;
     }
   }
 
-  void getLocation() async {
+  getLocation() async {
     try {
       isLocationLoading(true);
       Position position = await Geolocator.getCurrentPosition();
@@ -79,7 +90,7 @@ class AddressController extends GetxController with StateMixin<AddressModel> {
     }
   }
 
-  void locationToAddress(LatLng latLng) async {
+  locationToAddress(LatLng latLng) async {
     try {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(latLng.latitude, latLng.longitude);

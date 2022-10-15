@@ -11,39 +11,39 @@ part 'address_model.g.dart';
 @collection
 class AddressModel {
   AddressModel({
-    required this.addressid,
-    required this.userid,
-    required this.namesurname,
-    required this.addresstitle,
-    required this.county,
-    required this.town,
-    required this.quarter,
-    required this.street,
-    required this.no,
-    required this.floor,
-    required this.doornumber,
-    required this.lat,
-    required this.longi,
-    required this.fulladdress,
-    required this.isDefault,
+    this.addressid,
+    this.userid,
+    this.namesurname,
+    this.addresstitle,
+    this.county,
+    this.town,
+    this.quarter,
+    this.street,
+    this.no,
+    this.floor,
+    this.doornumber,
+    this.lat,
+    this.longi,
+    this.fulladdress,
+    this.isDefault,
   });
 
   Id id = Isar.autoIncrement;
-  late String addressid;
-  late String userid;
-  late String namesurname;
-  late String addresstitle;
-  late String county;
-  late String town;
-  late String quarter;
-  late String street;
-  late String no;
-  late String floor;
-  late String doornumber;
-  late String lat;
-  late String longi;
-  late String fulladdress;
-  late String isDefault;
+  late String? addressid;
+  late String? userid;
+  late String? namesurname;
+  late String? addresstitle;
+  late String? county;
+  late String? town;
+  late String? quarter;
+  late String? street;
+  late String? no;
+  late String? floor;
+  late String? doornumber;
+  late String? lat;
+  late String? longi;
+  late String? fulladdress;
+  late String? isDefault;
 
   factory AddressModel.fromJson(String str) =>
       AddressModel.fromMap(json.decode(str));

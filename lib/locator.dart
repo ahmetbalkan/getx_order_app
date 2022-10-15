@@ -12,7 +12,6 @@ final locator = GetIt.I;
 void locatorMethod() async {
   locator.registerLazySingleton(() => Constants());
   locator.registerLazySingleton(() => ColorsTheme());
-  locator.registerLazySingleton(() => GetStorage('Address'));
   locator.registerLazySingleton(() => AddressService());
   locator.registerLazySingleton(() => IsarService());
 }

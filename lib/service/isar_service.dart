@@ -33,6 +33,21 @@ class IsarService {
     });
   }
 
+  Future<AddressModel> getDefaultAddress() async {
+    final isar = await db;
+
+    var a =
+        await isar.addressModels.filter().isDefaultContains("1").findFirst();
+    return a!;
+  }
+
+  Stream<List<AddressModel>> listenAddress() async* {
+    final isar = await db;
+
+    var a = isar.addressModels.where().watch(fireImmediately: true);
+    yield* a;
+  }
+
   Future<void> cleanDb() async {
     final isar = await db;
     await isar.writeTxn(() => isar.clear());

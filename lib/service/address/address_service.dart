@@ -20,9 +20,7 @@ class AddressService extends GetConnect implements AddressBase {
 
   @override
   Future<bool> addAddress(AddressModel address) async {
-    await _isarService.cleanDb();
     getAllAdress();
-
     final form = FormData(address.toMap());
     final response1 = await post(
       url + 'insert_address.php',
@@ -73,20 +71,19 @@ class AddressService extends GetConnect implements AddressBase {
 
   @override
   Future<void> isDefaultUpdate(int yeniid) async {
-    var newa, olda;
-
     var alladdress = await getAllAdress();
 
-    var a =
-        alladdress.where((element) => element.isDefault.contains("1")).toList();
-
-    var b = alladdress
-        .where((element) => element.addressid.contains(yeniid.toString()))
+    var a = alladdress
+        .where((element) => element.isDefault!.contains("1"))
         .toList();
 
-    _isarService.UpdateisDefault(a.first, b.first);
+    var b = alladdress
+        .where((element) => element.addressid!.contains(yeniid.toString()))
+        .toList();
 
-    final formold = FormData({
+    await _isarService.UpdateisDefault(a.first, b.first);
+
+    /* final formold = FormData({
       'addressid': a.first.addressid,
       'isDefault': "0",
     });
@@ -104,6 +101,11 @@ class AddressService extends GetConnect implements AddressBase {
     final responsenew = await post(
       url + 'update_single_row_address.php',
       formnew,
-    );
+    );*/
+  }
+
+  @override
+  Future<AddressModel> getDefaultAddress() async {
+    return await _isarService.getDefaultAddress();
   }
 }
