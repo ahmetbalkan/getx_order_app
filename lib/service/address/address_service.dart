@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:geocoder_buddy/geocoder_buddy.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
 import 'package:get/get.dart';
@@ -20,12 +19,14 @@ class AddressService extends GetConnect implements AddressBase {
 
   @override
   Future<bool> addAddress(AddressModel address) async {
-    getAllAdress();
+    _isarService.cleanDb();
+    var alladdress = await getAllAdress();
     final form = FormData(address.toMap());
     final response1 = await post(
       url + 'insert_address.php',
       form,
     );
+
     return true;
   }
 
@@ -83,7 +84,7 @@ class AddressService extends GetConnect implements AddressBase {
 
     await _isarService.UpdateisDefault(a.first, b.first);
 
-    /* final formold = FormData({
+    final formold = FormData({
       'addressid': a.first.addressid,
       'isDefault': "0",
     });
@@ -101,7 +102,7 @@ class AddressService extends GetConnect implements AddressBase {
     final responsenew = await post(
       url + 'update_single_row_address.php',
       formnew,
-    );*/
+    );
   }
 
   @override
