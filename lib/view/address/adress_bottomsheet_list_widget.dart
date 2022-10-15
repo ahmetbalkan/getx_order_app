@@ -1,5 +1,5 @@
-import 'package:firebase_getx_order_app/view/homepage/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
@@ -18,6 +18,7 @@ class AdressListWidget extends StatefulWidget {
 
 class _AdressListWidgetState extends State<AdressListWidget> {
   var _constants = locator.get<Constants>();
+  final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
 
   var _ct = locator.get<ColorsTheme>();
 
@@ -28,6 +29,7 @@ class _AdressListWidgetState extends State<AdressListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    late LocationPermission permission;
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: new BoxDecoration(
@@ -86,8 +88,20 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: InkWell(
-                      onTap: () {
-                        Get.to(AdressMapPage());
+                      onTap: () async {
+                        permission =
+                            await _geolocatorPlatform.checkPermission();
+                        if (permission == LocationPermission.denied) {
+                          permission =
+                              await _geolocatorPlatform.requestPermission();
+                          if (permission == LocationPermission.deniedForever) {
+                            _constants.Snackbar();
+                          }
+                        } else {
+                          Get.to(AdressMapPage());
+                        }
+
+                        print(permission);
                       },
                       child: Container(
                         width: double.infinity,
@@ -185,6 +199,8 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                                                   .addressList[index].addressid
                                                   .toString()),
                                               index);
+
+                                          Navigator.pop(context);
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(

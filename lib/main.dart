@@ -8,7 +8,6 @@ import 'package:firebase_getx_order_app/view/homepage/homepage.dart';
 import 'package:firebase_getx_order_app/view/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:isar/isar.dart';
 import 'constants/constant.dart';
 import 'firebase_options.dart';
@@ -27,7 +26,6 @@ void main() async {
 var _constants = locator.get<Constants>();
 var _ct = locator.get<ColorsTheme>();
 
-GetStorage box = GetStorage();
 FirebaseAuth auth = FirebaseAuth.instance;
 
 class MyApp extends StatelessWidget {

@@ -30,7 +30,6 @@ class _AdressWidgetState extends State<AdressWidget> {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          _controller.getAddressList();
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,

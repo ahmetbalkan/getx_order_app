@@ -33,6 +33,15 @@ class IsarService {
     });
   }
 
+  Future<void> UpdateisDefaultSingle(AddressModel addressModelold) async {
+    final isar = await db;
+
+    await isar.writeTxn(() async {
+      addressModelold.isDefault = "0";
+      await isar.addressModels.put(addressModelold); // insert & update
+    });
+  }
+
   Future<AddressModel> getDefaultAddress() async {
     final isar = await db;
 

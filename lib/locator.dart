@@ -1,7 +1,6 @@
 import 'package:firebase_getx_order_app/service/isar_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'constants/colors.dart';
 import 'constants/constant.dart';

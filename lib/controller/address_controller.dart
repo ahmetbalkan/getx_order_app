@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:geocoder_buddy/geocoder_buddy.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -13,7 +10,6 @@ import '../locator.dart';
 
 import '../service/address/address_service.dart';
 import '../service/address/adress_base.dart';
-import '../service/isar_service.dart';
 
 AddressBase _addressService = locator.get<AddressService>();
 
@@ -58,7 +54,7 @@ class AddressController extends GetxController {
   addAddress(AddressModel addressModel) async {
     try {
       _addressService.addAddress(addressModel);
-      addressList.add(addressModel);
+      getAddressList();
       update();
     } catch (e) {
       print(e);
@@ -112,7 +108,7 @@ class AddressController extends GetxController {
           getFullAddress.value = fullAddress;
 
           formAdressModel.value = AddressModel(
-              addressid: "1",
+              addressid: "0",
               userid: auth.currentUser!.uid,
               namesurname: "",
               addresstitle: "",
@@ -126,7 +122,7 @@ class AddressController extends GetxController {
               lat: latLng.latitude.toString(),
               longi: latLng.longitude.toString(),
               fulladdress: fullAddress,
-              isDefault: 0.toString());
+              isDefault: 1.toString());
         } else {
           getFullAddress.value = "BU ülkede hizmet verilmemektedir.";
         }
