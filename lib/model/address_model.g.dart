@@ -47,48 +47,43 @@ const AddressModelSchema = CollectionSchema(
       name: r'fulladdress',
       type: IsarType.string,
     ),
-    r'isDefault': PropertySchema(
-      id: 6,
-      name: r'isDefault',
-      type: IsarType.string,
-    ),
     r'lat': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'lat',
       type: IsarType.string,
     ),
     r'longi': PropertySchema(
-      id: 8,
+      id: 7,
       name: r'longi',
       type: IsarType.string,
     ),
     r'namesurname': PropertySchema(
-      id: 9,
+      id: 8,
       name: r'namesurname',
       type: IsarType.string,
     ),
     r'no': PropertySchema(
-      id: 10,
+      id: 9,
       name: r'no',
       type: IsarType.string,
     ),
     r'quarter': PropertySchema(
-      id: 11,
+      id: 10,
       name: r'quarter',
       type: IsarType.string,
     ),
     r'street': PropertySchema(
-      id: 12,
+      id: 11,
       name: r'street',
       type: IsarType.string,
     ),
     r'town': PropertySchema(
-      id: 13,
+      id: 12,
       name: r'town',
       type: IsarType.string,
     ),
     r'userid': PropertySchema(
-      id: 14,
+      id: 13,
       name: r'userid',
       type: IsarType.string,
     )
@@ -145,12 +140,6 @@ int _addressModelEstimateSize(
   }
   {
     final value = object.fulladdress;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.isDefault;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
@@ -218,15 +207,14 @@ void _addressModelSerialize(
   writer.writeString(offsets[3], object.doornumber);
   writer.writeString(offsets[4], object.floor);
   writer.writeString(offsets[5], object.fulladdress);
-  writer.writeString(offsets[6], object.isDefault);
-  writer.writeString(offsets[7], object.lat);
-  writer.writeString(offsets[8], object.longi);
-  writer.writeString(offsets[9], object.namesurname);
-  writer.writeString(offsets[10], object.no);
-  writer.writeString(offsets[11], object.quarter);
-  writer.writeString(offsets[12], object.street);
-  writer.writeString(offsets[13], object.town);
-  writer.writeString(offsets[14], object.userid);
+  writer.writeString(offsets[6], object.lat);
+  writer.writeString(offsets[7], object.longi);
+  writer.writeString(offsets[8], object.namesurname);
+  writer.writeString(offsets[9], object.no);
+  writer.writeString(offsets[10], object.quarter);
+  writer.writeString(offsets[11], object.street);
+  writer.writeString(offsets[12], object.town);
+  writer.writeString(offsets[13], object.userid);
 }
 
 AddressModel _addressModelDeserialize(
@@ -242,15 +230,14 @@ AddressModel _addressModelDeserialize(
     doornumber: reader.readStringOrNull(offsets[3]),
     floor: reader.readStringOrNull(offsets[4]),
     fulladdress: reader.readStringOrNull(offsets[5]),
-    isDefault: reader.readStringOrNull(offsets[6]),
-    lat: reader.readStringOrNull(offsets[7]),
-    longi: reader.readStringOrNull(offsets[8]),
-    namesurname: reader.readStringOrNull(offsets[9]),
-    no: reader.readStringOrNull(offsets[10]),
-    quarter: reader.readStringOrNull(offsets[11]),
-    street: reader.readStringOrNull(offsets[12]),
-    town: reader.readStringOrNull(offsets[13]),
-    userid: reader.readStringOrNull(offsets[14]),
+    lat: reader.readStringOrNull(offsets[6]),
+    longi: reader.readStringOrNull(offsets[7]),
+    namesurname: reader.readStringOrNull(offsets[8]),
+    no: reader.readStringOrNull(offsets[9]),
+    quarter: reader.readStringOrNull(offsets[10]),
+    street: reader.readStringOrNull(offsets[11]),
+    town: reader.readStringOrNull(offsets[12]),
+    userid: reader.readStringOrNull(offsets[13]),
   );
   object.id = id;
   return object;
@@ -290,8 +277,6 @@ P _addressModelDeserializeProp<P>(
     case 12:
       return (reader.readStringOrNull(offset)) as P;
     case 13:
-      return (reader.readStringOrNull(offset)) as P;
-    case 14:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1362,160 +1347,6 @@ extension AddressModelQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'isDefault',
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'isDefault',
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'isDefault',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultGreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'isDefault',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultLessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'isDefault',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'isDefault',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'isDefault',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'isDefault',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'isDefault',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'isDefault',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'isDefault',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterFilterCondition>
-      isDefaultIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'isDefault',
-        value: '',
       ));
     });
   }
@@ -2818,18 +2649,6 @@ extension AddressModelQuerySortBy
     });
   }
 
-  QueryBuilder<AddressModel, AddressModel, QAfterSortBy> sortByIsDefault() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isDefault', Sort.asc);
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterSortBy> sortByIsDefaultDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isDefault', Sort.desc);
-    });
-  }
-
   QueryBuilder<AddressModel, AddressModel, QAfterSortBy> sortByLat() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lat', Sort.asc);
@@ -3017,18 +2836,6 @@ extension AddressModelQuerySortThenBy
     });
   }
 
-  QueryBuilder<AddressModel, AddressModel, QAfterSortBy> thenByIsDefault() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isDefault', Sort.asc);
-    });
-  }
-
-  QueryBuilder<AddressModel, AddressModel, QAfterSortBy> thenByIsDefaultDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isDefault', Sort.desc);
-    });
-  }
-
   QueryBuilder<AddressModel, AddressModel, QAfterSortBy> thenByLat() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'lat', Sort.asc);
@@ -3171,13 +2978,6 @@ extension AddressModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<AddressModel, AddressModel, QDistinct> distinctByIsDefault(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'isDefault', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<AddressModel, AddressModel, QDistinct> distinctByLat(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -3276,12 +3076,6 @@ extension AddressModelQueryProperty
   QueryBuilder<AddressModel, String?, QQueryOperations> fulladdressProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'fulladdress');
-    });
-  }
-
-  QueryBuilder<AddressModel, String?, QQueryOperations> isDefaultProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'isDefault');
     });
   }
 

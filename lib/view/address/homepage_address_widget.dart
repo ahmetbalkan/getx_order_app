@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../locator.dart';
-import '../../service/isar_service.dart';
 import 'adress_bottomsheet_list_widget.dart';
 
 class AdressWidget extends StatefulWidget {
@@ -83,14 +82,10 @@ class _AdressWidgetState extends State<AdressWidget> {
                                     init: AddressController(),
                                     initState: (_) {},
                                     builder: (_) {
-                                      return _.isDataLoading == true
-                                          ? Center(
-                                              child: Column(
-                                              children: [
-                                                CircularProgressIndicator(),
-                                              ],
-                                            ))
-                                          : Row(
+                                      return _.homePageAddressModel.value
+                                                  .addresstitle !=
+                                              null
+                                          ? Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
@@ -103,8 +98,13 @@ class _AdressWidgetState extends State<AdressWidget> {
                                                       .addresstitle!,
                                                   style: _constants
                                                       .quicksantMainColor(18),
-                                                ),
+                                                )
                                               ],
+                                            )
+                                          : Text(
+                                              "Liste Boş",
+                                              style: _constants
+                                                  .quicksantMainColor(18),
                                             );
                                     },
                                   ))),

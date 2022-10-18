@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_getx_order_app/controller/location_controller.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
 import 'package:firebase_getx_order_app/view/homepage/homepage.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class AdressFormPage extends StatelessWidget {
 
   var _constants = locator.get<Constants>();
   var _ct = locator.get<ColorsTheme>();
+  AddressController _addressController = Get.find();
 
   final TextEditingController _nameSurnameController = TextEditingController();
   final TextEditingController _addressTitleController = TextEditingController();
@@ -63,8 +65,8 @@ class AdressFormPage extends StatelessWidget {
             )
           ],
         ),
-        body: GetBuilder<AddressController>(
-          init: AddressController(),
+        body: GetBuilder<LocationController>(
+          init: LocationController(),
           initState: (_) {},
           builder: (_) {
             _cityController.text = _.formAdressModel.value!.town!;
@@ -317,24 +319,23 @@ class AdressFormPage extends StatelessWidget {
                       InkWell(
                         onTap: () async {
                           AddressModel addressModel = AddressModel(
-                              addressid: '',
-                              userid:
-                                  _.formAdressModel.value!.userid.toString(),
-                              namesurname: _nameSurnameController.text,
-                              addresstitle: _addressTitleController.text,
-                              county: _countryController.text.toString(),
-                              town: _cityController.text.toString(),
-                              quarter: _quarterController.text.toString(),
-                              street: _streetController.text.toString(),
-                              no: _noController.text.toString(),
-                              floor: _floorController.text.toString(),
-                              doornumber: _doorController.text.toString(),
-                              lat: _.formAdressModel.value!.lat,
-                              longi: _.formAdressModel.value!.longi,
-                              fulladdress: _.formAdressModel.value!.fulladdress,
-                              isDefault: _.formAdressModel.value!.isDefault);
+                            addressid: '',
+                            userid: _.formAdressModel.value!.userid.toString(),
+                            namesurname: _nameSurnameController.text,
+                            addresstitle: _addressTitleController.text,
+                            county: _countryController.text.toString(),
+                            town: _cityController.text.toString(),
+                            quarter: _quarterController.text.toString(),
+                            street: _streetController.text.toString(),
+                            no: _noController.text.toString(),
+                            floor: _floorController.text.toString(),
+                            doornumber: _doorController.text.toString(),
+                            lat: _.formAdressModel.value!.lat,
+                            longi: _.formAdressModel.value!.longi,
+                            fulladdress: _.formAdressModel.value!.fulladdress,
+                          );
 
-                          _.addAddress(addressModel);
+                          _addressController.addAddress(addressModel);
 
                           Get.offAll(Homepage());
                         },

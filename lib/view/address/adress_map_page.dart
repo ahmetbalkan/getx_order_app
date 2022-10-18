@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../constants/colors.dart';
 import '../../constants/constant.dart';
 import '../../controller/address_controller.dart';
+import '../../controller/location_controller.dart';
 import '../../locator.dart';
 
 class AdressMapPage extends StatefulWidget {
@@ -22,12 +23,12 @@ class _AdressMapPageState extends State<AdressMapPage> {
   Completer<GoogleMapController> _controller = Completer();
   var _constants = locator.get<Constants>();
   var _ct = locator.get<ColorsTheme>();
-  AddressController _addressController = Get.put(AddressController());
+  LocationController _locationController = Get.put(LocationController());
   late BitmapDescriptor customIcon;
 
   @override
   void initState() {
-    _addressController.getLocation();
+    _locationController.getLocation();
     _gotoLocation();
 
     super.initState();
@@ -64,7 +65,7 @@ class _AdressMapPageState extends State<AdressMapPage> {
             )
           ],
         ),
-        body: GetX<AddressController>(
+        body: GetX<LocationController>(
           builder: (c) => c.isLocationLoading == true
               ? Center(child: _constants.loadingWidget(300))
               : Column(
@@ -166,7 +167,7 @@ class _AdressMapPageState extends State<AdressMapPage> {
                                                 .quicksantMainColor(14),
                                           ),
                                           Text(
-                                            _addressController
+                                            _locationController
                                                 .getFullAddress.value,
                                             style: _constants
                                                 .quicksantBlackThinColor(14),
@@ -235,7 +236,7 @@ class _AdressMapPageState extends State<AdressMapPage> {
 
     controller.moveCamera(
         CameraUpdate.newLatLngZoom(LatLng(po.latitude, po.longitude), 18));
-    _addressController.locationToAddress(LatLng(po.latitude, po.longitude));
+    _locationController.locationToAddress(LatLng(po.latitude, po.longitude));
   }
 
   getCenter() async {
@@ -246,7 +247,7 @@ class _AdressMapPageState extends State<AdressMapPage> {
       (bounds.northeast.latitude + bounds.southwest.latitude) / 2,
       (bounds.northeast.longitude + bounds.southwest.longitude) / 2,
     );
-    _addressController
+    _locationController
         .locationToAddress(LatLng(center.latitude, center.longitude));
   }
 }

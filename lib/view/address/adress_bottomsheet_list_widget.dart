@@ -193,15 +193,7 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return InkWell(
-                                        onTap: () {
-                                          controller.isDefaultUpdate(
-                                              int.parse(controller
-                                                  .addressList[index].addressid
-                                                  .toString()),
-                                              index);
-
-                                          Navigator.pop(context);
-                                        },
+                                        onTap: () {},
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5, horizontal: 30),
@@ -211,12 +203,7 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: controller
-                                                            .addressList[index]
-                                                            .isDefault ==
-                                                        "1"
-                                                    ? Color(0xFFe9f8ff)
-                                                    : Colors.white,
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: Colors.blue.shade300,
                                                   width: 1,
@@ -295,13 +282,7 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                                                                 BorderRadius
                                                                     .circular(
                                                                         10)),
-                                                    value: controller
-                                                                .addressList[
-                                                                    index]
-                                                                .isDefault ==
-                                                            "1"
-                                                        ? true
-                                                        : false,
+                                                    value: false,
                                                     onChanged: (value) {},
                                                   )
                                                 ],

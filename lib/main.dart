@@ -12,7 +12,6 @@ import 'package:isar/isar.dart';
 import 'constants/constant.dart';
 import 'firebase_options.dart';
 import 'locator.dart';
-import 'service/isar_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

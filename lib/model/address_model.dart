@@ -25,7 +25,6 @@ class AddressModel {
     this.lat,
     this.longi,
     this.fulladdress,
-    this.isDefault,
   });
 
   Id id = Isar.autoIncrement;
@@ -43,7 +42,6 @@ class AddressModel {
   late String? lat;
   late String? longi;
   late String? fulladdress;
-  late String? isDefault;
 
   factory AddressModel.fromJson(String str) =>
       AddressModel.fromMap(json.decode(str));
@@ -65,7 +63,6 @@ class AddressModel {
         lat: json["lat"],
         longi: json["longi"],
         fulladdress: json["fulladdress"],
-        isDefault: json["isDefault"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -83,6 +80,5 @@ class AddressModel {
         "lat": lat,
         "longi": longi,
         "fulladdress": fulladdress,
-        "isDefault": isDefault,
       };
 }

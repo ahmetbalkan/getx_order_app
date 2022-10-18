@@ -1,10 +1,10 @@
-import 'package:firebase_getx_order_app/service/isar_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'constants/colors.dart';
 import 'constants/constant.dart';
-import 'service/address/address_service.dart';
+import 'service/api/address/address_service.dart';
+import 'service/local/address_isar_service.dart';
 
 final locator = GetIt.I;
 
