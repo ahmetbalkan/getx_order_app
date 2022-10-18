@@ -9,24 +9,18 @@ import '../../constants/constant.dart';
 import '../../locator.dart';
 import 'adress_bottomsheet_list_widget.dart';
 
-class AdressWidget extends StatefulWidget {
+class AdressWidget extends StatelessWidget {
   const AdressWidget({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<AdressWidget> createState() => _AdressWidgetState();
-}
-
-var _constants = locator.get<Constants>();
-var _ct = locator.get<ColorsTheme>();
-
-List<Widget> boxes = [];
-AddressController _controller = Get.find();
-
-class _AdressWidgetState extends State<AdressWidget> {
-  @override
   Widget build(BuildContext context) {
+    var _constants = locator.get<Constants>();
+    var _ct = locator.get<ColorsTheme>();
+    List<Widget> boxes = [];
+    AddressController _addressController = Get.find();
+
     return InkWell(
         onTap: () {
           showModalBottomSheet(
@@ -82,30 +76,32 @@ class _AdressWidgetState extends State<AdressWidget> {
                                     init: AddressController(),
                                     initState: (_) {},
                                     builder: (_) {
-                                      return _.homePageAddressModel.value
-                                                  .addresstitle !=
-                                              null
-                                          ? Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text("Adres: ",
-                                                    style: _constants
-                                                        .quicksantMainThinColor(
-                                                            18)),
-                                                Text(
-                                                  _.homePageAddressModel.value
-                                                      .addresstitle!,
-                                                  style: _constants
-                                                      .quicksantMainColor(18),
-                                                )
-                                              ],
-                                            )
-                                          : Text(
-                                              "Liste Boş",
+                                      if (_addressController
+                                              .activeAddress.value.addressid !=
+                                          null) {
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text("Adres: ",
+                                                style: _constants
+                                                    .quicksantMainThinColor(
+                                                        18)),
+                                            Text(
+                                              _addressController.activeAddress
+                                                  .value.addresstitle!,
                                               style: _constants
                                                   .quicksantMainColor(18),
-                                            );
+                                            )
+                                          ],
+                                        );
+                                      } else {
+                                        return Text(
+                                          "Liste Boş",
+                                          style:
+                                              _constants.quicksantMainColor(18),
+                                        );
+                                      }
                                     },
                                   ))),
                               Expanded(

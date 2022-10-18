@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class LocationController extends GetxController {
       Position position = await Geolocator.getCurrentPosition();
       currentLatlng.value = LatLng(position.latitude, position.latitude);
     } catch (e) {
-      print(e);
+      debugPrint("LocationControoler getLocation Exception: " + e.toString());
     } finally {
       isLocationLoading(false);
     }

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../view/main_page.dart';
 
@@ -20,7 +21,7 @@ class LoginController extends GetxController {
         timeout: const Duration(seconds: 120),
       );
     } catch (e) {
-      print(e);
+      debugPrint("LoginController sendCode Exception: " + e.toString());
     }
   }
 
@@ -33,6 +34,7 @@ class LoginController extends GetxController {
 
       Get.offAll(MainPage());
     } catch (e) {
+      debugPrint("LoginController loginPhone Exception: " + e.toString());
       Get.snackbar("Kodunuz Hatalı", "Lütfen doğru kodu giriniz.");
     }
   }

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_getx_order_app/bindings/homepage_bindings.dart';
 import 'package:firebase_getx_order_app/constants/colors.dart';
 import 'package:firebase_getx_order_app/controller/address_controller.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
@@ -36,6 +37,16 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      getPages: [
+        GetPage(
+          name: "/home",
+          page: () => Homepage(),
+          binding: HomeBindings(),
+          transition: Transition.leftToRightWithFade,
+          opaque: false,
+          showCupertinoParallax: true,
+        ),
+      ],
       title: 'Sual',
       theme: ThemeData(
         primarySwatch: _ct.materialColorMain,

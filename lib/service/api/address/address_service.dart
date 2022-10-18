@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_getx_order_app/model/active_address_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:firebase_getx_order_app/model/address_model.dart';
@@ -34,13 +35,22 @@ class AddressService extends GetConnect implements AddressBase {
       if (addedaddressid != 0) {
         address.addressid = addedaddressid.toString();
         _isarService.addAddressLocal(address);
+
+        ActiveAddressModel aam = ActiveAddressModel(
+            activeid: "",
+            addressid: addedaddressid.toString(),
+            userid: address.userid);
+        //eklenen adresin response olarak dönen idsini güncelliyorum
+
+        addUpdateDefaultAddress(aam);
+        _isarService.addActiveAddressLocal(aam);
+        //local ve uzak update
+        //id buraya düştüğü için sadece burada local active adresi güncelleyebilirim.
       }
     } catch (e) {
       debugPrint("AddressService addAddress Exception: " + e.toString());
     }
   }
-
-  //{"addressid":13,"success":1,"message":"successfully "}
 
   @override
   Future<List<AddressModel>> getAllAdress() async {
@@ -61,6 +71,43 @@ class AddressService extends GetConnect implements AddressBase {
     } catch (e) {
       debugPrint("AddressService getAllAdress Exception: " + e.toString());
       return [];
+    }
+  }
+
+  @override
+  addUpdateDefaultAddress(ActiveAddressModel address) async {
+    try {
+      final form = FormData(address.toMap());
+      final response1 = await post(
+        url + 'update_active_address.php',
+        form,
+      );
+      await _isarService.addActiveAddressLocal(address);
+    } catch (e) {
+      debugPrint("AddressService addDefaultAddress Exception: " + e.toString());
+    }
+  }
+
+  @override
+  Future<ActiveAddressModel> getActiveAddressID() async {
+    try {
+      List<ActiveAddressModel> _addressList = [];
+      final userid = FormData({
+        'userid': auth.currentUser!.uid,
+      });
+      final activeResponse = await post(
+        url + 'get_active_adress.php',
+        userid,
+      );
+      var jsonList = await jsonDecode(activeResponse.body)['active_address'];
+      if (jsonList is List) {
+        _addressList =
+            jsonList.map((e) => ActiveAddressModel.fromMap(e)).toList();
+      }
+      return _addressList[0];
+    } catch (e) {
+      debugPrint("AddressService getActiveAddress Exception: " + e.toString());
+      return ActiveAddressModel();
     }
   }
 }

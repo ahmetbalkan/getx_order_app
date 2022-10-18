@@ -21,5 +21,5 @@ class ColorsTheme {
     },
   );
 
-  Color ListActiveColor = const Color(0xFFe9f8f);
+  Color listActiveColor = const Color(0xFFe9f8f);
 }

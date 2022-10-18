@@ -20,7 +20,7 @@ class MainPage extends StatefulWidget {
 }
 
 final screen = [
-  const Homepage(),
+  Homepage(),
   const OppurtunityPage(),
   const ShoppingCartPage(),
   const ProfilePage(),

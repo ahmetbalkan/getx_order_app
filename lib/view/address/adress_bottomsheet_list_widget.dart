@@ -1,3 +1,4 @@
+import 'package:firebase_getx_order_app/model/active_address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -7,25 +8,20 @@ import '../../controller/address_controller.dart';
 import '../../locator.dart';
 import 'adress_map_page.dart';
 
-class AdressListWidget extends StatefulWidget {
+class AdressListWidget extends StatelessWidget {
   AdressListWidget({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<AdressListWidget> createState() => _AdressListWidgetState();
-}
-
-class _AdressListWidgetState extends State<AdressListWidget> {
   var _constants = locator.get<Constants>();
+
   final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
 
   var _ct = locator.get<ColorsTheme>();
 
   var isChecked = false;
-  late Color colorList;
 
-  AddressController _controller = Get.find();
+  late Color colorList;
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +96,6 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                         } else {
                           Get.to(AdressMapPage());
                         }
-
-                        print(permission);
                       },
                       child: Container(
                         width: double.infinity,
@@ -193,7 +187,18 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          controller.updateActiveAddress(
+                                              ActiveAddressModel(
+                                                  activeid: "",
+                                                  addressid: controller
+                                                      .addressList[index]
+                                                      .addressid,
+                                                  userid: controller
+                                                      .addressList[index]
+                                                      .userid));
+                                          Navigator.pop(context);
+                                        },
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5, horizontal: 30),
@@ -203,7 +208,13 @@ class _AdressListWidgetState extends State<AdressListWidget> {
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: Colors.white,
+                                                color: controller
+                                                            .addressList[index]
+                                                            .addressid ==
+                                                        controller.activeAddress
+                                                            .value.addressid
+                                                    ? Color(0xFFe9f8ff)
+                                                    : Colors.white,
                                                 border: Border.all(
                                                   color: Colors.blue.shade300,
                                                   width: 1,

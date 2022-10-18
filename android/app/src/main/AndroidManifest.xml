@@ -12,6 +12,7 @@
                android:value="AIzaSyAF1s87WIEO74ifHGNeurfF5VCmVDrHX5w"/>
         
         <activity
+        
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"

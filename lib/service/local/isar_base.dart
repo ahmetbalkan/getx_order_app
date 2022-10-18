@@ -1,3 +1,4 @@
+import 'package:firebase_getx_order_app/model/active_address_model.dart';
 import 'package:isar/isar.dart';
 
 import '../../model/address_model.dart';
@@ -12,7 +13,7 @@ class IsarBase {
   Future<Isar> openDB() async {
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [AddressModelSchema],
+        [AddressModelSchema, ActiveAddressModelSchema],
         inspector: true,
       );
     }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_getx_order_app/model/active_address_model.dart';
 
 import 'package:firebase_getx_order_app/view/homepage/slide_mainpage.dart';
 import 'package:flutter/material.dart';
@@ -17,27 +18,22 @@ import '../address/homepage_address_widget.dart';
 import 'list_product_widget.dart';
 import 'package:http/http.dart' as http;
 
-class Homepage extends StatefulWidget {
-  const Homepage({
+class Homepage extends StatelessWidget {
+  Homepage({
     Key? key,
   }) : super(key: key);
 
-  @override
-  _HomepageState createState() => _HomepageState();
-}
-
-var _addressService = locator.get<AddressService>();
-var _isarService = locator.get<IsarService>();
-
-class _HomepageState extends State<Homepage> {
-  AddressController _controller = Get.put(AddressController());
+  final AddressController _addressController = Get.put(AddressController());
+  final _addressService = locator.get<AddressService>();
+  var _isarService = locator.get<IsarService>();
 
   @override
   Widget build(BuildContext context) {
+    print(_addressController.addressList.length);
     var _constants = locator.get<Constants>();
     var _ct = locator.get<ColorsTheme>();
     return Container(
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: const BoxDecoration(color: Colors.white),
         child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.white,
@@ -46,7 +42,7 @@ class _HomepageState extends State<Homepage> {
                   (BuildContext context, BoxConstraints viewportConstraints) {
                 return Container(
                   child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(
+                    physics: const BouncingScrollPhysics(
                         parent: AlwaysScrollableScrollPhysics()),
                     scrollDirection: Axis.vertical,
                     child: ConstrainedBox(
@@ -54,43 +50,13 @@ class _HomepageState extends State<Homepage> {
                           minHeight: viewportConstraints.maxHeight,
                         ),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ElevatedButton(
-                                onPressed: () async {
-                                  AddressModel addressModel = AddressModel(
-                                    addressid: '',
-                                    userid: "serid",
-                                    namesurname: "_nameSurnameController.text",
-                                    addresstitle:
-                                        "_addressTitleController.text",
-                                    county:
-                                        "_countryController.text.toString()",
-                                    town: "_cityController.text.toString()",
-                                    quarter:
-                                        " _quarterController.text.toString()",
-                                    street: "_streetController.text.toString()",
-                                    no: "_noController.text.toString()",
-                                    floor: "_floorController.text.toString()",
-                                    doornumber:
-                                        "_doorController.text.toString()",
-                                    lat: "lat",
-                                    longi: "longi",
-                                    fulladdress: "",
-                                  );
-                                  var a = await _addressService
-                                      .addAddress(AddressModel());
-
-                                  var b = _isarService.getAllAddressLocal();
-                                  print(b.toString());
-                                },
-                                child: Text("asdasd")),
-                            AdressWidget(),
-                            SlideWidget(),
-                            ListProductWidget(),
-                          ],
-                        )),
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: const [
+                              AdressWidget(),
+                              SlideWidget(),
+                              ListProductWidget(),
+                            ])),
                   ),
                 );
               },
